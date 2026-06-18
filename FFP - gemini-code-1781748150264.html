@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FieldForge Partners - Operational & Commercial Engineering Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS RESET, PALETTE SCHEMA & VARIABLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border-radius: 0px !important; /* Strict industrial mandate: no rounded corners */
+        }
+
+        :root {
+            /* Palette Theme Mappings */
+            --midnight: #0A0E1A;
+            --graphite: #1A1F2E;
+            --neon-lime: #4CC38A;
+            --muted-purple: #7C3AED;
+            --soft-stone: #F5F5F4;
+            --cool-gray: #9CA3AF;
+            --text-dark: #0F172A;
+
+            /* Platform Engine Base Elements */
+            --pure-white: #FFFFFF;
+            --border-gray: #E5E7EB;
+            --text-muted: #6B7280;
+            
+            /* Diagnostic Calculator States */
+            --tier1: #EF4444;
+            --tier2: var(--muted-purple);
+            --tier3: #F59E0B;
+            --tier4: var(--neon-lime);
+            --error-bg: #FEF2F2;
+            --error-border: #F87171;
+            --track-unselected: #E5E7EB;
+            --thumb-unselected: #9CA3AF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--soft-stone);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* STRUCTURAL NAVIGATION HEADER */
+        header {
+            background-color: var(--midnight);
+            border-bottom: 2px solid var(--graphite);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(10, 14, 26, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .logo-icon {
+            width: 26px;
+            height: 26px;
+            background-color: var(--graphite);
+            position: relative;
+            display: inline-block;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .logo-block:hover .logo-icon {
+            transform: rotate(90deg);
+        }
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 4px; left: 4px; right: 4px; bottom: 4px;
+            border-top: 4px solid var(--neon-lime);
+            border-left: 4px solid var(--neon-lime);
+        }
+
+        nav .nav-tabs {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        nav .nav-tabs button {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--cool-gray);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            border-bottom: 3px solid transparent;
+        }
+
+        nav .nav-tabs button:hover {
+            color: #FFFFFF;
+            background-color: var(--graphite);
+        }
+
+        nav .nav-tabs button.active-tab {
+            color: var(--neon-lime);
+            border-bottom: 3px solid var(--neon-lime);
+            background-color: rgba(163, 255, 18, 0.04);
+        }
+
+        .header-cta {
+            background-color: var(--neon-lime);
+            color: var(--midnight);
+            border: none;
+            padding: 11px 20px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .header-cta:hover { 
+            background-color: #BEFF44;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(163, 255, 18, 0.3);
+        }
+
+        /* HIGH-PERFORMANCE ANIMATION LAYER */
+        @keyframes mechanicalReveal {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-view { display: none; }
+        .page-view.active-view { 
+            display: block; 
+            z-index: 1;
+            animation: mechanicalReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .section-wrapper { width: 100%; padding: 60px 20px; position: relative; }
+        .full-width-strip { width: 100%; padding: 40px 20px; }
+
+        /* THEME COATINGS FOR SECTION SEGMENTATION */
+        .bg-midnight { background-color: var(--midnight); color: #FFFFFF; }
+        .bg-graphite { background-color: var(--graphite); color: #FFFFFF; }
+        .bg-stone { background-color: var(--soft-stone); color: var(--text-dark); }
+        .bg-white { background-color: var(--pure-white); color: var(--text-dark); }
+
+        .contained-1200 { max-width: 1200px; margin: 0 auto; }
+        .contained-1100 { max-width: 1100px; margin: 0 auto; }
+        .contained-1000 { max-width: 1000px; margin: 0 auto; }
+        .contained-900 { max-width: 900px; margin: 0 auto; }
+        .contained-800 { max-width: 800px; margin: 0 auto; }
+
+        /* TYPOGRAPHY BLOCKS */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.3px;
+            font-weight: 700;
+            color: inherit;
+        }
+        .bg-stone h1, .bg-stone h2, .bg-stone h3, .bg-white h1, .bg-white h2, .bg-white h3 { color: var(--text-dark); }
+
+        p { color: inherit; opacity: 0.9; margin-bottom: 1.25rem; font-size: 0.95rem; }
+        .bg-stone p, .bg-white p { color: #334155; }
+        .bg-midnight p, .bg-graphite p { color: #94A3B8; }
+        p:last-child { margin-bottom: 0; }
+
+        /* INDUSTRIAL BUTTON INTERFACES */
+        .btn-amber {
+            background-color: var(--neon-lime);
+            color: var(--midnight);
+            border: none;
+            padding: 14px 28px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-amber:hover { 
+            background-color: #BEFF44; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(163, 255, 18, 0.3);
+        }
+
+        .btn-purple {
+            background-color: var(--muted-purple);
+            color: #FFFFFF;
+            border: none;
+            padding: 14px 28px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-purple:hover {
+            background-color: #6D28D9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-teal {
+            background: transparent;
+            border: 2px solid var(--muted-purple);
+            color: var(--muted-purple);
+            padding: 12px 26px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bg-midnight .btn-teal, .bg-graphite .btn-teal {
+            color: #FFFFFF;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .btn-teal:hover { 
+            background-color: var(--muted-purple);
+            border-color: var(--muted-purple);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
+        }
+
+        /* METRIC ARCHITECTURE DECORATIONS */
+        .protocol-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--muted-purple);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        .bg-midnight .protocol-label, .bg-graphite .protocol-label {
+            color: var(--neon-lime);
+        }
+
+        .tech-crosshair {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+        }
+        .tc-tl { top: 15px; left: 15px; border-top: 2px solid var(--cool-gray); border-left: 2px solid var(--cool-gray); }
+        .tc-tr { top: 15px; right: 15px; border-top: 2px solid var(--cool-gray); border-right: 2px solid var(--cool-gray); }
+        .tc-bl { bottom: 15px; left: 15px; border-bottom: 2px solid var(--cool-gray); border-left: 2px solid var(--cool-gray); }
+        .tc-br { bottom: 15px; right: 15px; border-bottom: 2px solid var(--cool-gray); border-right: 2px solid var(--cool-gray); }
+
+        .scorecard-brick:hover .tech-crosshair, .infra-sub-block:hover .tech-crosshair, .blueprint-card:hover .tech-crosshair {
+            opacity: 0.8;
+            scale: 1.15;
+            border-color: var(--muted-purple);
+        }
+
+        .inline-title-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            margin-top: -3px;
+            color: var(--muted-purple);
+        }
+
+        @keyframes system-blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--neon-lime);
+            display: inline-block;
+            animation: system-blink 1.2s infinite ease-in-out;
+            box-shadow: 0 0 8px var(--neon-lime);
+        }
+
+        /* --- HOME TAB SCHEMATICS --- */
+        .hero-layout { display: flex; align-items: center; gap: 40px; padding: 40px 0; }
+        .hero-left { flex: 1.1; }
+        .hero-right {
+            flex: 0.9; background-color: var(--midnight); padding: 20px;
+            border: 2px solid var(--graphite); display: flex;
+            justify-content: center; align-items: center; min-height: 380px;
+        }
+        .hero-left h1 { font-size: 2.3rem; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-left .hero-subtext {
+            font-size: 1rem; font-weight: 500; margin-bottom: 30px;
+            border-left: 4px solid var(--muted-purple); padding-left: 15px;
+        }
+        .hero-actions { display: flex; gap: 15px; margin-bottom: 25px; }
+
+        .split-system-layout { display: flex; gap: 40px; }
+        .split-system-left { flex: 1; }
+        .split-system-right { flex: 1; }
+        
+        .tagline-small { font-size: 0.8rem; font-weight: 700; color: var(--muted-purple); margin-bottom: 10px; letter-spacing: 0.5px; }
+        .split-system-left h2 { font-size: 1.6rem; margin-bottom: 10px; line-height: 1.3; }
+        
+        .scorecard-brick { 
+            background-color: var(--graphite); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            color: #FFFFFF;
+            padding: 25px; 
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scorecard-brick:hover {
+            box-shadow: 0 12px 30px rgba(10, 14, 26, 0.3);
+            transform: translateY(-2px);
+            border-color: var(--muted-purple);
+        }
+        .scorecard-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--midnight); padding-bottom: 12px; margin-bottom: 20px; }
+        .scorecard-header h3 { font-size: 1rem; }
+        .scorecard-header span { font-size: 0.75rem; font-family: 'Space Mono', monospace; color: var(--cool-gray); }
+        .scorecard-metric-row { margin-bottom: 20px; }
+        .metric-label-group { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; margin-bottom: 5px; }
+        .metric-label-group span.metric-tag { color: var(--neon-lime); }
+        .metric-sub { font-size: 0.75rem; font-weight: 600; color: var(--cool-gray); margin-bottom: 6px; }
+        
+        .progress-bar-bg { background-color: var(--midnight); height: 8px; width: 100%; position: relative; }
+        .progress-bar-fill { background-color: var(--muted-purple); height: 100%; transition: width 1s ease-in-out; }
+
+        .section-header-block { border-bottom: 2px solid rgba(0, 0, 0, 0.1); padding-bottom: 10px; margin-bottom: 35px; }
+        .bg-midnight .section-header-block, .bg-graphite .section-header-block { border-bottom-color: rgba(255, 255, 255, 0.1); }
+        .section-header-block h2 { font-size: 1.4rem; }
+
+        .infra-badge-title { display: flex; align-items: center; gap: 20px; margin-bottom: 15px; }
+        .infra-badge { font-size: 3.5rem; font-weight: 800; color: var(--muted-purple); font-family: 'Space Mono', monospace; line-height: 1; min-width: 45px; }
+        .infra-title-main { font-size: 1.2rem; font-weight: 700; color: #FFFFFF; }
+        .infra-grid-content { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        
+        .infra-sub-block { 
+            background: var(--graphite); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 22px; 
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .infra-sub-block:hover {
+            border-color: var(--neon-lime);
+            transform: translateY(-2px);
+        }
+        .infra-sub-block h4 { font-size: 0.95rem; color: #FFFFFF; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .infra-sub-block p { font-size: 0.88rem; color: #94A3B8; margin-bottom: 12px; }
+        .infra-spec-list { list-style: none; padding-left: 0; margin-top: 10px;}
+        .infra-spec-list li { font-size: 0.85rem; color: #CBD5E1; padding-left: 14px; position: relative; margin-bottom: 6px; font-weight: 600; }
+        .infra-spec-list li::before { content: "▪"; position: absolute; left: 0; color: var(--neon-lime); }
+
+        /* Blueprint Card Matrices */
+        .blueprint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
+        .blueprint-grid .blueprint-card { 
+            background-color: var(--midnight); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            display: flex; 
+            flex-direction: column; 
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .blueprint-grid .blueprint-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            border-color: var(--neon-lime);
+        }
+        .blueprint-card-header { background-color: var(--graphite); color: var(--pure-white); padding: 8px 12px; font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .blueprint-card-body { padding: 20px; flex-grow: 1; text-align: left; position: relative; }
+        .blueprint-card-num { font-size: 2.2rem; font-weight: 800; color: var(--neon-lime) !important; line-height: 1; margin-bottom: 5px; text-align: left; font-family: 'Space Mono', monospace; transition: color 0.3s ease; }
+        .blueprint-card-body h3 { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.3; text-align: left; color: #FFFFFF; }
+        .blueprint-card-body p { font-size: 0.82rem; color: #94A3B8; line-height: 1.5; text-align: left; }
+        .blueprint-letter-overlay { position: absolute; top: 15px; right: 20px; font-family: 'Sora', sans-serif; font-weight: 800; color: rgba(76, 195, 138, 0.07); pointer-events: none; line-height: 1; }
+        .blueprint-letter-overlay.size-regular { font-size: 3.5rem; }
+        .blueprint-letter-overlay.size-xlarge { font-size: 5rem; }
+
+        /* --- ABOUT TAB SCHEMATICS --- */
+        .about-title-header { background-color: var(--graphite); text-align: center; }
+        .about-title-header h1 { color: var(--pure-white); font-size: 1.6rem; max-width: 850px; margin: 0 auto; line-height: 1.3; }
+        .profile-layout { display: flex; gap: 40px; }
+        .profile-left-col { flex: 0.4; }
+        .profile-right-col { flex: 0.6; }
+        .founder-photo-placeholder { width: 100%; height: 440px; background-color: var(--graphite); border: 1px dashed rgba(255, 255, 255, 0.15); display: flex; justify-content: center; align-items: center; text-align: center; padding: 20px; }
+        .founder-photo-placeholder span { font-family: 'Space Mono', monospace; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--cool-gray); }
+        .profile-right-col h2 { font-size: 1.5rem; margin-bottom: 4px; }
+        .profile-tag-sub { color: var(--muted-purple); font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 0.5px; }
+        .bricks-grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .brick-modular-container { 
+            background-color: var(--midnight); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 30px; 
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .brick-modular-container:hover {
+            border-color: var(--neon-lime);
+            box-shadow: inset 0 0 0 1px var(--neon-lime);
+        }
+        .brick-modular-container h3 { font-size: 1.05rem; margin-bottom: 12px; border-bottom: 2px solid var(--graphite); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .big-phase-cap { font-size: 2.8rem; font-weight: 800; color: var(--neon-lime); font-family: 'Sora', sans-serif; line-height: 1; display: inline-block; vertical-align: bottom; }
+
+        /* --- SERVICES TAB SCHEMATICS --- */
+        .services-statement-box h1 { font-size: 1.9rem; margin-bottom: 15px; }
+        .anti-fluff-alert-container { border-left: 4px solid var(--muted-purple); padding-left: 20px; margin-top: 20px; }
+        .anti-fluff-alert-container h4 { color: var(--muted-purple); font-size: 0.95rem; margin-bottom: 5px; }
+        .anti-fluff-alert-container p { font-size: 0.9rem; font-weight: 600; color: #475569; }
+        
+        .stacking-vertical-rows { width: 100%; }
+        .stacking-row-block { padding: 60px 20px; position: relative; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .stacking-row-block:nth-child(even) { background-color: var(--midnight); color: #FFFFFF; }
+        .stacking-row-block:nth-child(odd) { background-color: var(--graphite); color: #FFFFFF; }
+        
+        .services-phase-grid {
+            display: grid;
+            grid-template-columns: 32% 68%;
+            gap: 40px;
+            align-items: start;
+        }
+        .services-phase-left {
+            position: sticky;
+            top: 110px;
+        }
+        .services-phase-right {
+            padding-left: 30px;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stage-title-strip { font-family: 'Space Mono', monospace; font-size: 1.15rem; font-weight: 700; margin-bottom: 0; text-transform: uppercase; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+        .stage-title-strip span { color: var(--neon-lime); text-transform: uppercase; }
+        .vertical-row-inner h4 { font-size: 0.95rem; color: #FFFFFF; margin-bottom: 6px; margin-top: 25px; }
+        .vertical-row-inner h4:first-child { margin-top: 0; }
+        .vertical-row-inner p { font-size: 0.88rem; color: #94A3B8; margin-bottom: 20px; }
+        .vertical-row-inner ul { list-style-type: square; padding-left: 20px; margin-bottom: 0; }
+        .vertical-row-inner li { font-size: 0.88rem; color: #CBD5E1; margin-bottom: 12px; line-height: 1.5; }
+        .vertical-row-inner li:last-child { margin-bottom: 0; }
+
+        /* Structural Tabular Logic Matrix */
+        .matrix-static-wrapper { background-color: var(--pure-white); border: 1px solid var(--border-gray); width: 100%; padding: 25px; position: relative; }
+        .matrix-static-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: var(--midnight); border-bottom: 2px solid var(--border-gray); padding-bottom: 10px; }
+        table.matrix-data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; color: var(--text-dark); }
+        table.matrix-data-table th { background-color: var(--midnight); color: #FFFFFF; padding: 12px; font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; border: 1px solid var(--border-gray); }
+        table.matrix-data-table td { padding: 12px; border: 1px solid var(--border-gray); vertical-align: top; transition: background-color 0.2s ease; }
+        table.matrix-data-table tr:hover td { background-color: rgba(124, 58, 237, 0.03); }
+        table.matrix-data-table tr:nth-child(even) td { background-color: var(--soft-stone); }
+
+        /* --- CONTACT TAB SCHEMATICS --- */
+        .intake-header-box { background-color: var(--midnight); color: #FFFFFF; text-align: center; }
+        .intake-header-box h1 { font-size: 2.2rem; margin-bottom: 8px; letter-spacing: -1px; }
+        .intake-header-box p { font-weight: 500; font-size: 0.95rem; max-width: 700px; margin: 0 auto 0 auto; color: #94A3B8; }
+        
+        .status-marker-capsule-teal { display: block; font-family: 'Space Mono', monospace; background-color: var(--graphite); color: var(--pure-white); padding: 8px 16px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; margin-bottom: 10px; width: 100%; }
+        .status-marker-capsule-teal span.blink-light { width: 10px; height: 10px; background-color: var(--neon-lime); display: inline-block; margin-right: 8px; animation: system-blink 1.2s infinite ease-in-out; box-shadow: 0 0 8px var(--neon-lime); }
+        .origin-story-container { border: 1px solid var(--border-gray); position: relative; }
+        .origin-story-container h3 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid var(--border-gray); padding-bottom: 6px; }
+        
+        .contact-split-container { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 20px; align-items: stretch; margin-bottom: 25px; }
+        .right-column-stack { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+        .contact-callout-card { background-color: var(--midnight); color: var(--pure-white); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
+        .contact-callout-card h4 { color: #FFFFFF; font-size: 1.1rem; margin-bottom: 15px; }
+        .contact-callout-card .cta-links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; width: 100%; }
+        .contact-callout-card .cta-link-btn { background: transparent; border: 1px solid var(--neon-lime); color: var(--neon-lime); padding: 12px; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; }
+        .contact-callout-card .cta-link-btn:hover { background: var(--neon-lime); color: var(--midnight); transform: scale(1.03); }
+
+        .industrial-form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .form-field-group { display: flex; flex-direction: column; }
+        .form-field-group label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; color: var(--text-dark); }
+        .form-input-element { width: 100%; padding: 12px; border: 1px solid var(--border-gray); background-color: var(--soft-stone); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .form-input-element:focus { outline: none; border-color: var(--muted-purple); background-color: var(--pure-white); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
+        .form-radio-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+        .radio-item-label { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer; font-weight: 500; }
+        .radio-item-label input { margin-right: 10px; width: 16px; height: 16px; accent-color: var(--muted-purple); }
+        .submit-large-cta { font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; background-color: var(--neon-lime); color: var(--midnight); border: none; padding: 18px 30px; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.5px; width: 100%; text-align: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .submit-large-cta:hover { background-color: #BEFF44; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(163, 255, 18, 0.3); }
+
+        /* --- DIAGNOSTIC INDEX ENGINE VISUALS --- */
+        .diagnostic-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 24px; }
+        @media (min-width: 900px) { .diagnostic-container.results-active { grid-template-columns: 3fr 2fr; } }
+        
+        .diag-header { background: var(--midnight); color: white; padding: 30px 20px; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--muted-purple); position: relative; }
+        .diag-header h1 { color: #FFFFFF; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.5px; text-align: center; width: 100%; }
+
+        .diag-intro-card { background: white; padding: 24px; border: 1px solid var(--border-gray); margin-bottom: 5px; }
+        .diag-card { background: white; padding: 24px; border: 1px solid var(--border-gray); height: fit-content; }
+        .question-block { margin-bottom: 24px; padding: 20px; border: 1px solid var(--border-gray); background-color: #ffffff; transition: background-color 0.4s ease, border-color 0.4s ease; }
+        .question-block.missing-field { background-color: var(--error-bg); border-color: var(--error-border); box-shadow: 0 0 0 1px var(--error-border); }
+        .question-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; text-transform: none; color: var(--midnight); }
+        .question-desc { font-size: 0.9rem; color: #475569; margin-bottom: 14px; font-style: italic; }
+        .slider-container { display: flex; align-items: center; width: 100%; }
+        input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; height: 32px; margin: 0; cursor: pointer; }
+        input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: var(--track-unselected); transition: background-color 0.3s ease; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: var(--thumb-unselected); height: 20px; width: 20px; border: 2px solid white; margin-top: -6px; transition: background-color 0.3s ease, scale 0.2s ease; }
+        input[type="range"]:active::-webkit-slider-thumb { scale: 1.2; }
+        input[type="range"].active-engaged::-webkit-slider-runnable-track { background: #C7D2FE; }
+        input[type="range"].active-engaged::-webkit-slider-thumb { background: var(--muted-purple); box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4); }
+        .level-indicator { font-size: 0.9rem; margin-top: 12px; font-weight: 600; color: #64748b; background: #f8fafc; padding: 10px 14px; border-left: 4px solid var(--track-unselected); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .level-indicator.active { color: #1e293b; border-left-color: var(--muted-purple); background: rgba(124, 58, 237, 0.04); }
+        .validation-alert { display: none; background-color: var(--error-bg); border: 1px solid var(--error-border); color: #b91c1c; padding: 16px; margin-bottom: 24px; font-weight: 600; }
+        
+        .step-progress-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: var(--soft-stone); padding: 12px 20px; font-family: 'Space Mono', monospace; font-weight: 700; }
+        .diag-action-container { display: flex; gap: 15px; margin-top: 25px; }
+        .diag-btn { font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; padding: 14px 28px; font-size: 0.85rem; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .diag-submit-btn { background-color: var(--neon-lime); color: var(--midnight); }
+        .diag-submit-btn:hover { background-color: #BEFF44; transform: translateY(-1px); }
+        .diag-nav-btn { background-color: var(--graphite); color: white; }
+        .diag-nav-btn:hover:not(:disabled) { background-color: var(--midnight); transform: translateY(-1px); }
+        .diag-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* STICKY PANEL OUTPUT ENGINE VISUALS */
+        .diag-sticky-panel { display: none; height: fit-content; }
+        .diag-score-display { text-align: center; background-color: var(--midnight); padding: 20px; border: 1px solid var(--graphite); }
+        .diag-score-display h3 { color: #FFFFFF; }
+        .diag-global-score { font-size: 4rem; font-weight: 900; color: var(--neon-lime); margin: 10px 0; font-family: 'Space Mono', monospace; }
+        .diag-tier-badge { display: inline-block; padding: 6px 16px; font-family: 'Sora', sans-serif; font-weight: 700; color: white; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .pillar-bar-container { margin-top: 15px; }
+        .pillar-label { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
+        .bar-bg { background-color: var(--track-unselected); height: 10px; width: 100%; }
+        .bar-fill { background-color: var(--muted-purple); height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .diag-blueprint-box { background-color: var(--soft-stone); border-left: 4px solid var(--muted-purple); padding: 20px; margin-top: 20px; font-size: 0.9rem; color: var(--text-dark); }
+        .diag-audit-header { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 0.95rem; margin-top: 20px; text-transform: uppercase; border-bottom: 1px solid var(--border-gray); padding-bottom: 4px; }
+        .diag-gap-list { list-style: none; padding-left: 0; margin-top: 10px; }
+        .diag-gap-item { font-size: 0.85rem; margin-bottom: 10px; padding-left: 14px; position: relative; color: #334155; }
+        .diag-gap-item::before { content: "▪"; position: absolute; left: 0; color: var(--muted-purple); }
+
+        .system-footer { background-color: var(--midnight); color: var(--soft-stone); padding: 40px 20px; border-top: 4px solid var(--muted-purple); font-size: 0.85rem; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+        .footer-inner p { color: var(--cool-gray); }
+        .footer-inner .corp-statement { font-weight: 700; color: #FFFFFF; text-transform: uppercase; font-family: 'Space Mono', monospace; letter-spacing: 1px; }
+
+        @media (max-width: 992px) {
+            .split-system-layout { flex-direction: column; }
+            .split-system-left, .split-system-right { flex: initial; width: 100%; }
+            .services-phase-grid { grid-template-columns: 1fr; gap: 20px; }
+            .services-phase-left { position: static; }
+            .services-phase-right { padding-left: 0; border-left: none; }
+            .contact-split-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-block">
+                <div class="logo-icon"></div>
+                FieldForge Partners
+            </div>
+            <nav>
+                <ul class="nav-tabs">
+                    <li><button id="tab-home" class="tab-trigger active-tab" onclick="switchSystemTab(event, 'home-view')">Home</button></li>
+                    <li><button id="tab-about" class="tab-trigger" onclick="switchSystemTab(event, 'about-view')">About</button></li>
+                    <li><button id="tab-services" class="tab-trigger" onclick="switchSystemTab(event, 'services-view')">Capabilities</button></li>
+                    <li><button id="tab-contact" class="tab-trigger" onclick="switchSystemTab(event, 'contact-view')">Contact Us</button></li>
+                </ul>
+            </nav>
+            <button class="header-cta" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">Launch P.R.O.™ Index™</button>
+        </div>
+    </header>
+
+    <main>
+
+        <div id="home-view" class="page-view active-view">
+            
+            <section class="section-wrapper bg-white">
+                <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                <div class="contained-1200 hero-layout">
+                    <div class="hero-left">
+                        <h1>Driving Operational Efficiency and Commercial Growth for B2B and Field Services.</h1>
+                        <div class="hero-subtext">
+                            We resolve the invisible operational bottlenecks that cap your field capacity while deploying targeted sales and digital frameworks to scale your revenue, accelerate mobilization speeds, and protect hard-earned profit margins.
+                        </div>
+                        <div class="hero-actions">
+                            <button class="btn-amber" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">Launch P.R.O.™ Index™</button>
+                            <button class="btn-purple" onclick="switchSystemTab(null, 'services-view')">Review Our Infrastructure</button>
+                        </div>
+                    </div>
+                    <div class="hero-right">
+                        <svg class="blueprint-svg" viewBox="0 0 400 300" style="width: 100%; height: auto;">
+                            <line x1="10" y1="280" x2="390" y2="280" stroke="rgba(124, 58, 237, 0.3)" stroke-width="2"/>
+                            <line x1="50" y1="20" x2="50" y2="280" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4"/>
+                            <line x1="200" y1="20" x2="200" y2="280" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4"/>
+                            <line x1="350" y1="20" x2="350" y2="280" stroke="rgba(255,255,255,0.04)" stroke-dasharray="4"/>
+                            <rect x="120" y="160" width="160" height="90" stroke="var(--muted-purple)" stroke-width="1.5" stroke-dasharray="4,4"/>
+                            <circle cx="200" cy="205" r="35" stroke="var(--neon-lime)" stroke-width="1.5"/>
+                            <circle cx="200" cy="205" r="5" fill="var(--neon-lime)"/>
+                            <path d="M 80,205 L 165,205 M 235,205 L 320,205 L 320,90 L 260,90" stroke="var(--muted-purple)" stroke-width="2"/>
+                            <rect x="220" y="70" width="40" height="40" stroke="var(--cool-gray)" stroke-width="1"/>
+                            <circle cx="240" cy="90" r="12" stroke="var(--neon-lime)" stroke-width="1"/>
+                            <line x1="240" y1="90" x2="246" y2="84" stroke="var(--neon-lime)" stroke-width="1.5"/>
+                            <rect x="150" y="120" width="100" height="25" stroke="var(--muted-purple)" stroke-width="1" fill="var(--midnight)"/>
+                            <path d="M 120,250 L 70,250 L 70,180 Z" stroke="var(--cool-gray)" stroke-width="1"/>
+                            <text x="130" y="136" font-family="monospace" font-size="8" fill="var(--neon-lime)" font-weight="700">SYS_ENG_P.R.O._ACTIVE</text>
+                            <text x="210" y="240" font-family="monospace" font-size="7" fill="#64748B">BAR_PRESSURE // 84.2%</text>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-stone">
+                <div class="contained-1200 split-system-layout">
+                    <div class="split-system-left">
+                        <div class="tagline-small">
+                            <svg class="inline-title-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            Commercial Engineering for Mobilized Field Services
+                        </div>
+                        <h2>Industrial Marketing Isn’t Creative. It’s Structural.</h2>
+                        <p>FieldForge Partners built the P.R.O.™ framework for technical operations that dominate on-site execution but hit a growth ceiling due to fragmented tracking and leaked leads. We replace generic agency guesswork with engineered marketing infrastructure: data-harvesting, automated routing, and digital systems that turn your technical expertise into predictable revenue.</p>
+                        <p style="font-weight: 700; color: var(--text-dark); margin-top: 15px;">Built for operations that need to break total dependency on trade shows and word-of-mouth.</p>
+                    </div>
+
+                    <div class="split-system-right">
+                        <div class="scorecard-brick">
+                            <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                            <div class="scorecard-header">
+                                <h3>The P.R.O.™ Index™</h3>
+                                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--neon-lime); text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+                                    <span class="pulse-dot"></span>System Status: Active
+                                </span>
+                            </div>
+
+                            <div class="scorecard-metric-row">
+                                <div class="metric-label-group">
+                                    <span class="metric-tag">[P] MARKET PERFORMANCE</span>
+                                    <span>72</span>
+                                </div>
+                                <div class="metric-sub">Auditing AEO visibility and digital footprint</div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 72%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="scorecard-metric-row">
+                                <div class="metric-label-group">
+                                    <span class="metric-tag">[R] PIPELINE RAMP</span>
+                                    <span>35</span>
+                                </div>
+                                <div class="metric-sub">Testing inbound/outbound lead velocity</div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 35%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="scorecard-metric-row">
+                                <div class="metric-label-group">
+                                    <span class="metric-tag">[O] WORKFLOW OUTPUT</span>
+                                    <span>48</span>
+                                </div>
+                                <div class="metric-sub">Isolating CRM data and front-office constraints</div>
+                                <div class="progress-bar-bg">
+                                    <div class="progress-bar-fill" style="width: 48%;"></div>
+                                </div>
+                            </div>
+
+                            <p style="font-size: 0.85rem; color: #CBD5E1; margin-top:15px;"><strong>P.R.O.™ System Constraints:</strong> A lagging index score indicates structural gaps across your Performance, Ramp, or Output layers. These constraints actively drain your field capacity by allowing operational lag and pipeline stalls to dictate where you deploy your mobilized crews.</p>
+
+                            <button class="btn-amber" style="width: 100%; margin-top: 15px; font-size: 0.85rem; padding: 14px;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">
+                                Launch Pro Index™
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-graphite">
+                <div class="contained-1200">
+                    <div class="section-header-block">
+                        <h2>The Four-Stage Blueprint</h2>
+                    </div>
+
+                    <div class="blueprint-grid">
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header">Phase 01: Intake</div>
+                            <div class="blueprint-card-body">
+                                <div class="blueprint-card-num">01</div>
+                                <h3>Critical Constraint Diagnosis</h3>
+                                <p>We bypass generic corporate audits. Instead, we launch the voice-activated P.R.O.™ Index™ to instantly pinpoint the exact pipeline stalls, conversion leaks, and market visibility blind spots holding back your operations.</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header">Phase 02: Authority</div>
+                            <div class="blueprint-card-body">
+                                <div class="blueprint-card-num">02</div>
+                                <div class="blueprint-letter-overlay size-regular">P</div>
+                                <h3>Market Performance Engineering [P]</h3>
+                                <p>We transform your website and sales assets into high-authority commercial tools. By re-engineering your application messaging and digital architecture, we ensure your capabilities pass strict procurement vetting and rank cleanly across AI search environments.</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header">Phase 03: Velocity</div>
+                            <div class="blueprint-card-body">
+                                <div class="blueprint-card-num">03</div>
+                                <div class="blueprint-letter-overlay size-regular">R</div>
+                                <h3>Pipeline Ramp Activation [R]</h3>
+                                <p>We deploy precise data harvesting and targeted account-based campaigns to stabilize your monthly opportunity flow. This builds a repeatable inbound system that breaks your total dependency on legacy trade shows and word-of-mouth networks.</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header">Phase 04: Scale</div>
+                            <div class="blueprint-card-body">
+                                <div class="blueprint-card-num">04</div>
+                                <div class="blueprint-letter-overlay size-xlarge">O</div>
+                                <h3>Automated Workflow Output [O]</h3>
+                                <p>We inject practical automation and CRM logic directly into your front office to eliminate administrative drag. We turn your CRM into a trusted source of truth, deploy intelligent lead routing, and build clear attribution loops to maximize execution speed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="about-view" class="page-view">
+            
+            <section class="full-width-strip about-title-header">
+                <h1>Built From Field Execution. Scaled Through System Logic.</h1>
+            </section>
+
+            <section class="section-wrapper bg-graphite">
+                <div class="contained-1100">
+                    <h2 style="font-size: 1.4rem; margin-bottom: 25px; text-transform: uppercase; border-bottom: 2px solid var(--midnight); padding-bottom: 10px;">
+                        Core Operating Principles
+                    </h2>
+                    
+                    <div class="bricks-grid-2x2">
+                        <div class="brick-modular-container">
+                            <span class="protocol-label">[CORE PROTOCOL 01]</span>
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                Deliberative & Analytical Strategy
+                            </h3>
+                            <p>We systematically dig into immediate business constraints to uncover hidden visibility bottlenecks, pipeline risks, and front-office headaches before prescribing a solution. We replace generic consulting guesswork with precision constraint identification.</p>
+                        </div>
+                        <div class="brick-modular-container">
+                            <span class="protocol-label">[CORE PROTOCOL 02]</span>
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                Practical System Management
+                            </h3>
+                            <p>Change fails when it ignores human and field realities. We systematically analyze all factors affecting a workflow, leveraging deep, trusted industry relationships to guide teams smoothly through automated system deployment, CRM optimization, and non-disruptive software transitions.</p>
+                        </div>
+                        <div class="brick-modular-container">
+                            <span class="protocol-label">[CORE PROTOCOL 03]</span>
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                The Achiever Focus
+                            </h3>
+                            <p>We operate with a relentless work ethic, completely rejecting academic business theories, noisy growth hacks, or corporate fluff. We evaluate performance based strictly on proven engineering methods and predictable, measurable pipeline momentum.</p>
+                        </div>
+                        <div class="brick-modular-container">
+                            <span class="protocol-label">[CORE PROTOCOL 04]</span>
+                            <h3>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                                Arranger Alignment
+                            </h3>
+                            <p>We coordinate and align people, automated software platforms, and hyper-precise data resources into the most productive configuration possible. This architecture synchronizes your inbound and outbound operations to maximize commercial execution and scale revenue.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-white">
+                <div class="contained-1100 profile-layout">
+                    <div class="profile-left-col">
+                        <div class="founder-photo-placeholder">
+                            <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div><div class="tc-bl tech-crosshair"></div><div class="tc-br tech-crosshair"></div>
+                            <span>[ On-Site Field Photo Blueprint Placeholder:<br>Founder Wesley Cowley ]</span>
+                        </div>
+                    </div>
+                    <div class="profile-right-col">
+                        <h2>Field Roots, Executive Execution</h2>
+                        <div class="profile-tag-sub">Wesley Cowley | Managing Director</div>
+                        
+                        <h3 style="font-size:1rem; margin-bottom:10px;">About the Founder</h3>
+                        <p>FieldForge Partners was founded by Wesley Cowley, a Mechanical Engineer with 15 years of hands-on experience across B2B field services, power generation, and complex surface engineering.</p>
+                        
+                        <ul style="list-style-type:square; padding-left:20px; margin-bottom:20px; color:#475569;">
+                            <li style="margin-bottom:8px; font-size:0.95rem;"><strong>Industrial B2B-Proven Leadership:</strong> Wes built his career managing large-scale infrastructure projects and technical teams for some of the largest industrial field service companies in the category, eventually rising to Senior Vice President roles.</li>
+                            <li style="margin-bottom:0px; font-size:0.95rem;"><strong>Private Equity Expertise:</strong> Having guided leadership teams through aggressive growth and complex transitions under some of America's most prominent private equity firms, he understands the exact pressures business owners face.</li>
+                        </ul>
+
+                        <p>Today, Wes acts as a seasoned advisor who translates complex sales, marketing, and operational constraints into clear, execution-ready blueprints. This deep, real-world exposure forms the technical foundation for our proprietary P.R.O.™ Index™ diagnostic framework.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="services-view" class="page-view">
+            
+            <section class="section-wrapper bg-white">
+                <div class="contained-1100 services-statement-box">
+                    <h1>End-to-End Operational & Commercial Engineering</h1>
+                    <div class="anti-fluff-alert-container">
+                        <h4>Our Value Proposition:</h4>
+                        <p>We build permanent, data-driven revenue engines specifically for the <strong>mobilized B2B industrial field service sector</strong>. No over-hyped marketing hacks or generic corporate fluff—just clear, proven ROI.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stacking-vertical-rows">
+                
+                <div class="stacking-row-block">
+                    <div class="contained-1100 services-phase-grid">
+                        <div class="services-phase-left">
+                            <div class="stage-title-strip">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <div>Phase 01 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px;">The System Stress-Test</span></div>
+                            </div>
+                            <button class="btn-amber" style="margin-top: 20px; font-size: 0.85rem; padding: 12px 24px; display: inline-block;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">
+                                Launch P.R.O.™ Index™
+                            </button>
+                        </div>
+                        <div class="services-phase-right">
+                            <div class="vertical-row-inner">
+                                <span class="protocol-label">[ENG-PROTOCOL 01.A] Critical Constraint Diagnosis</span>
+                                <p>We bypass generic corporate audits. Instead, we launch a proprietary P.R.O.™ Index™ diagnostic to immediately expose pipeline stalls, hidden visibility gaps, and tracking leaks.</p>
+                                <ul>
+                                    <li>Identifies immediate operational wins before direct consultation.</li>
+                                    <li>Customizes deployment parameters to your exact workforce realities.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stacking-row-block">
+                    <div class="contained-1100">
+                        <div class="services-phase-grid">
+                            <div class="services-phase-left">
+                                <div class="stage-title-strip">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    <div>[<span class="big-phase-cap">P</span>] Phase 02 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Performance Engineering</span></div>
+                                </div>
+                            </div>
+                            <div class="services-phase-right">
+                                <div class="infra-grid-content">
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 02.A]</span>
+                                        <h4>Modernized Web Footprints & Messaging</h4>
+                                        <p>Turning your digital footprint into an active sales filter. High-performance, SEO-optimized layout designs focused on clear technical execution by identifying buyers, equipment applications, and engineering needs.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Problem-specific messaging mapped by equipment variant</li>
+                                            <li>High-margin technical capability emphasis</li>
+                                        </ul>
+                                    </div>
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 02.B]</span>
+                                        <h4>Industrial SEO & Answer Engine Optimization</h4>
+                                        <p>Structuring your technical content so your specialized services are reliably cited and recommended by traditional search engines and next-generation AI discovery platforms like ChatGPT, Gemini, and Perplexity.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Enterprise Service Schema markup injection</li>
+                                            <li>Non-branded search discoverability for asset problems</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stacking-row-block">
+                    <div class="contained-1100">
+                        <div class="services-phase-grid">
+                            <div class="services-phase-left">
+                                <div class="stage-title-strip">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M16 18l6-6-6-6"/><polyline points="2 22 8 12 2 2"/></svg>
+                                    <div>[<span class="big-phase-cap">R</span>] Phase 03 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Ramp Activation</span></div>
+                                </div>
+                            </div>
+                            <div class="services-phase-right">
+                                <div class="infra-grid-content">
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 03.A]</span>
+                                        <h4>Intent Demand Capture & Nurture</h4>
+                                        <p>Stabilizing your qualified opportunities. We showcase your equipment expertise directly to plant managers and engineers through targeted account campaigns, breaking your dependency on legacy networks.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Automated trust content & SME video assets</li>
+                                            <li>Predictable account-based nurture channels</li>
+                                        </ul>
+                                    </div>
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 03.B]</span>
+                                        <h4>Sales & Partner Channel Alignment</h4>
+                                        <p>Eliminating the visibility dark zones that occur after an inquiry is handed off to sales reps or estimators. We replace guesswork with transparent collateral needed to convert contracts.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Unified Golden Thread capability statements</li>
+                                            <li>Standardized RFP responses designed for procurement</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stacking-row-block">
+                    <div class="contained-1100">
+                        <div class="services-phase-grid">
+                            <div class="services-phase-left">
+                                <div class="stage-title-strip">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><rect x="2" y="3" width="20" height="14" fill="none"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                    <div>[<span class="big-phase-cap">O</span>] Phase 04 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Output Automation</span></div>
+                                </div>
+                            </div>
+                            <div class="services-phase-right">
+                                <div class="infra-grid-content">
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 04.A]</span>
+                                        <h4>Conversion Infrastructure & Lead Routing</h4>
+                                        <p>Upgrading your environment to convert intent into secure data inputs inside enterprise CRMs. When high-value leads hit your stack, systems eliminate manual routing delays and frontend constraints.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Secure API lead and RFQ tracking links</li>
+                                            <li>Lag-free distribution routing directly to human account managers</li>
+                                        </ul>
+                                    </div>
+                                    <div class="infra-sub-block">
+                                        <span class="protocol-label">[ENG-PROTOCOL 04.B]</span>
+                                        <h4>Growth Intelligence & CRM Integrity</h4>
+                                        <p>Turning your CRM into a trusted source of truth to manage the pipeline cleanly. We establish clear attribution loops so leadership can track active opportunities back to their exact campaign origin.</p>
+                                        <ul class="infra-spec-list">
+                                            <li>Bidirectional marketing-to-CRM automation parameters</li>
+                                            <li>Hardcoded full-funnel campaign financial attribution loops</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="section-wrapper bg-stone">
+                <div class="contained-1000">
+                    <div class="matrix-static-wrapper">
+                        <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                        <div class="matrix-static-title">
+                            Integration & Tooling Matrix
+                        </div>
+                        <table class="matrix-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Infrastructure Layer</th>
+                                    <th>Verified Tooling</th>
+                                    <th>Engineered Operational Outcome</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Automation & Nurture</strong></td>
+                                    <td>HubSpot, ActiveCampaign, Zoho & more</td>
+                                    <td>Automated lead tracking and high-volume nurture.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Pipeline Fuel</strong></td>
+                                    <td>Apollo.io, <a href="http://hunter.io" target="_blank" style="color:var(--muted-purple); font-weight:700;">hunter.io</a> & More</td>
+                                    <td>Precision contact lists for industrial decision-makers.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>CRM Integration</strong></td>
+                                    <td>Salesforce, HubSpot, Pardot, SAP & more</td>
+                                    <td>Bi-directional sync mapping web visits to revenue.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Process Logic</strong></td>
+                                    <td>n8n.io, Make.com, Secure APIs & more</td>
+                                    <td>Multi-variable automation for hands-off lead routing.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Digital Footprint</strong></td>
+                                    <td>Webflow, WordPress, HTML & more</td>
+                                    <td>Fast, stable sites optimized for AI search crawling.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="contact-view" class="page-view">
+            
+            <section class="full-width-strip intake-header-box">
+                <h1>Start a Dialogue with “The Professor”</h1>
+                <p>Operational and commercial bottlenecks are diagnosed through direct discussion—not static, repeating discovery scripts.</p>
+            </section>
+
+            <section class="section-wrapper bg-stone">
+                <div class="contained-1100 contact-split-container">
+                    
+                    <div class="origin-story-container" style="padding: 40px; background-color: var(--pure-white); border-color: var(--border-gray);">
+                        <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                        <h2 style="font-size:1.2rem; margin-bottom:15px; border-bottom:2px solid var(--border-gray); padding-bottom:5px; color:var(--midnight);">Why Professor?</h2>
+                        <p>Let’s be clear: "The Professor" wasn't earned in some stuffy academic lecture hall or a corporate marketing suite. It goes back to a project around 2015. On that job, the customer, a third-party consultant, and a close friend and colleague of mine started trading lighthearted nicknames to keep things lively on-site. Because of my knack for answering highly specific technical questions using real-world subject matter expertise right there on the spot, they dubbed me "The Professor."</p>
+                        <p>The name stuck with a few folks ever since, and it perfectly sets the tone for how we work today: bringing sharp, deep technical logic to your business operations without taking ourselves too seriously.</p>
+                    </div>
+
+                    <div class="right-column-stack">
+                        
+                        <div class="status-marker-capsule-teal">
+                            <span class="blink-light"></span>SYSTEM STATUS: ACTIVE
+                        </div>
+
+                        <div class="contact-callout-card" style="border-color: rgba(255,255,255,0.05);">
+                            <h4>Connect with<br>"The Professor"</h4>
+                            <div class="cta-links">
+                                <button class="cta-link-btn" onclick="alert('Chatbot interface initializing...');">Connect Via Chatbot</button>
+                                <button class="cta-link-btn" onclick="alert('Routing voice connection stream...');">Connect Via Voice</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-white" style="padding-top:0;">
+                <div class="contained-800" style="background-color: var(--pure-white); border: 1px solid var(--border-gray); padding: 40px; position: relative;">
+                    <div class="tc-bl tech-crosshair"></div><div class="tc-br tech-crosshair"></div>
+                    
+                    <h3 style="font-size:1.1rem; margin-bottom:25px; text-transform:uppercase; color:var(--midnight); border-bottom: 2px solid var(--border-gray); padding-bottom: 10px;">Let's get in touch.</h3>
+                    
+                    <form class="industrial-form-grid" onsubmit="event.preventDefault(); alert('Parameters logged cleanly inside structural baseline tracking ledger.');">
+                        
+                        <div class="form-field-group">
+                            <label>Name (First & Last)</label>
+                            <input type="text" class="form-input-element" placeholder="First & Last Name" required>
+                        </div>
+
+                        <div class="form-field-group">
+                            <label>Corporate Email Address</label>
+                            <input type="email" class="form-input-element" placeholder="name@company.com" required>
+                        </div>
+
+                        <div class="form-field-group">
+                            <label>Company Name</label>
+                            <input type="text" class="form-input-element" placeholder="Company Name" required>
+                        </div>
+
+                        <div class="form-field-group">
+                            <label>Core Operational Focus</label>
+                            <select class="form-input-element" required>
+                                <option value="" disabled selected>Select focus framework option...</option>
+                                <option>B2B Field Services (Mobilized Crews & On-Site Equipment Service)</option>
+                                <option>Heavy Asset Maintenance & Turnarounds</option>
+                                <option>OEM / Equipment Manufacturing with Field Service Arms</option>
+                                <option>Industrial Specialized Contracting (Mechanical, Reliability, Surface Engineering)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field-group">
+                            <label>Field Technicians Workforce Size</label>
+                            <div class="form-radio-stack">
+                                <label class="radio-item-label">
+                                    <input type="radio" name="wf-size-form" checked> 1 - 25 Field Technicians
+                                </label>
+                                <label class="radio-item-label">
+                                    <input type="radio" name="wf-size-form"> 26 - 100 Field Technicians
+                                </label>
+                                <label class="radio-item-label">
+                                    <input type="radio" name="wf-size-form"> 101+ Field Technicians
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-field-group">
+                            <label>Current Bottlenecks & Immediate Headaches</label>
+                            <textarea class="form-input-element" rows="5" style="resize:vertical;" placeholder="What specific Performance, Ramp, or Output constraints is your team currently facing that you need resolved? This data will log directly into our tracking systems to guide our upcoming discussion." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-large-cta">
+                            LOG P.R.O.™ INDEX™ METRICS & INITIATE DIALOGUE
+                        </button>
+
+                    </form>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="diagnostic-view" class="page-view">
+            
+            <div class="diag-header">
+                <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                <h1>PERFORMANCE RAMP OUTPUT</h1>
+            </div>
+
+            <div class="section-wrapper">
+                <div class="diagnostic-container" id="diag-main-layout">
+                    
+                    <div id="diag-left-column">
+                        <div class="diag-intro-card">
+                            <p>Typical metrics fail because they treat your business like isolated silos. The P.R.O.™ Index™ tracks the systemic domino effect stalling your revenue:</p>
+                            <ul style="list-style-type: square; padding-left: 20px; margin-bottom: 15px; font-weight: 600; color: var(--midnight);">
+                                <li style="margin-bottom: 5px;"><strong>Performance:</strong> Generic positioning causes you to fail procurement vetting.</li>
+                                <li style="margin-bottom: 5px;"><strong>Ramp:</strong> Front-office tracking leaks freeze your pipeline velocity.</li>
+                                <li style="margin-bottom: 5px;"><strong>Output:</strong> Administrative lag ultimately drops your field crew utilization.</li>
+                            </ul>
+                            <p>To map these exact intersections, you will evaluate 3 interconnected constraints at a time across consecutive architectural phases.</p>
+                        </div>
+
+                        <div class="diag-card">
+                            <div class="validation-alert" id="diag-error-banner">
+                                Audit Blocked: One or more operational capabilities in this step remain unchecked. Review the highlighted categories to proceed.
+                            </div>
+
+                            <div class="step-progress-wrapper">
+                                <div>AUDIT WINDOW: PHASE <span id="current-step-display">1</span> OF 7</div>
+                                <div>QUESTIONS: <span id="current-range-display">1 - 3</span> / 21</div>
+                            </div>
+
+                            <div id="diag-questions-container"></div>
+
+                            <div class="diag-action-container">
+                                <button class="diag-btn diag-nav-btn" id="diag-prev-btn" onclick="navigateStep(-1)" disabled>Previous Phase</button>
+                                <button class="diag-btn diag-nav-btn" id="diag-next-btn" onclick="navigateStep(1)">Next Phase</button>
+                                <button class="diag-btn diag-submit-btn" id="diag-calc-btn" onclick="validateAndCalculateDiag()" style="display: none;">Run the Master Operational Audit</button>
+                                <button class="diag-btn" id="diag-reset-btn" onclick="resetDiagnosticEngine()" style="display: none; background:#64748b; color:white;">Restart Audit</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="diag-sticky-panel" id="diag-results-panel">
+                        <div class="diag-card">
+                            <div class="diag-score-display">
+                                <h3>Global Index Score</h3>
+                                <div class="diag-global-score" id="diag-global-score-output">0</div>
+                                <div id="diag-tier-badge-output" class="diag-tier-badge">Calculating...</div>
+                            </div>
+
+                            <hr style="border: 0; border-top: 1px solid var(--border-gray); margin: 24px 0;">
+
+                            <h3>Summarized Pillar Breakdowns</h3>
+                            
+                            <div class="pillar-bar-container">
+                                <div class="pillar-label"><span>[P] Market Performance</span><span id="diag-p-score-txt">0%</span></div>
+                                <div class="bar-bg"><div id="diag-p-bar" class="bar-fill"></div></div>
+                            </div>
+
+                            <div class="pillar-bar-container">
+                                <div class="pillar-label"><span>[R] Pipeline Ramp</span><span id="diag-r-score-txt">0%</span></div>
+                                <div class="bar-bg"><div id="diag-r-bar" class="bar-fill"></div></div>
+                            </div>
+
+                            <div class="pillar-bar-container">
+                                <div class="pillar-label"><span>[O] Workflow Output</span><span id="diag-o-score-txt">0%</span></div>
+                                <div class="bar-bg"><div id="diag-o-bar" class="bar-fill"></div></div>
+                            </div>
+
+                            <hr style="border: 0; border-top: 1px solid var(--border-gray); margin: 24px 0;">
+
+                            <h3>Master Audit and Tailored Blueprint</h3>
+                            <div id="diag-blueprint-output"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="system-footer">
+        <div class="footer-inner">
+            <p class="corp-statement">FieldForge Partners &copy; 2026. All Rights Reserved.</p>
+            <p>Operational and commercial frameworks engineered to maximize efficiency and growth for the mobilized B2B industrial field service sector.</p>
+        </div>
+    </footer>
+
+    <script>
+        function switchSystemTab(event, targetViewId) {
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(view => view.classList.remove('active-view'));
+
+            const tabs = document.querySelectorAll('.tab-trigger');
+            tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+            const targetElement = document.getElementById(targetViewId);
+            if(targetElement) targetElement.classList.add('active-view');
+
+            const idMap = {
+                'home-view': 'tab-home',
+                'about-view': 'tab-about',
+                'services-view': 'tab-services',
+                'contact-view': 'tab-contact',
+                'diagnostic-view': 'tab-diagnostic'
+            };
+
+            const activeTabId = idMap[targetViewId];
+            if (activeTabId && document.getElementById(activeTabId)) {
+                document.getElementById(activeTabId).classList.add('active-tab');
+            }
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        const cemaMatrix = [
+            { id: 1, name: "Q1: Procurement Vetting and Corporate Positioning", desc: "How effectively does your digital footprint communicate technical capability to pass intense procurement vetting?", p: 0.70, r: 0.20, o: 0.10, levels: ["Standard company boilerplate; flat digital brochure.", "Mentions field capabilities, but relies on generic corporate summaries.", "Acceptable technical highlights, fails to target plant problems.", "Explicit capability language aligned with equipment applications.", "High-converting, application-specific messaging built around plant problems."] },
+            { id: 2, name: "Q2: Non-Branded Organic Discovery", desc: "How often do qualified industrial buyers discover your company before they already know your entity name?", p: 0.80, r: 0.20, o: 0.00, levels: ["Almost never; search presence is zero unless using legal name.", "Weak non-branded discoverability; terms buried past page one.", "Ranks for a handful of local trade phrases; unpredictable inflow.", "Regular visibility across major search engines for core categories.", "Broad, dominant discoverability across multiple digital paths."] },
+            { id: 3, name: "Q3: AI Answer Engine Exposure", desc: "How visible is your company when industrial buyers use AI-assisted tools (ChatGPT, Gemini, Perplexity)?", p: 0.70, r: 0.10, o: 0.20, levels: ["Total blind spot; web framework never optimized for AI crawlers.", "Rarely cited or referenced by next-gen search models.", "Occasional, inconsistent aggregate mentions for narrow niches.", "Surfaces when prompted with highly specific regional scenarios.", "Direct injection of Enterprise Service Schema ensures top citations."] },
+            { id: 4, name: "Q4: SME Credentialing and Authority", desc: "How structured is your web ecosystem in showcasing technical certifications and field expertise?", p: 0.60, r: 0.30, o: 0.10, levels: ["Leadership profiles are absent or limited to corporate titles.", "Mentions team experience, but completely hides credentials.", "Certifications listed on a single page, not used to filter accounts.", "Dedicated expert profiles clearly outline key technical credentials.", "Automated Trust Content Suites deploy 'SME Video Nuggets' to filter leads."] },
+            { id: 5, name: "Q5: Commercial Document Uniformity", desc: "How aligned is your public-facing messaging with internal sales collateral and formal RFPs?", p: 0.50, r: 0.40, o: 0.10, levels: ["Disjointed; estimators patch together old, unverified documents.", "Standard templates exist, but focus entirely on features over procurement.", "Cohesive appearance, but messaging shifts wildly depending on reps.", "Standardized pitch decks and capability statements mirror messaging.", "Unified 'Golden Thread' of technical messaging runs across all packets."] },
+            { id: 6, name: "Q6: Inbound RFQ Leakage and Capture", desc: "How effectively does your digital layout convert active traffic into formal, trackable RFQs?", p: 0.40, r: 0.20, o: 0.40, levels: ["Zero conversion logic; forced to find unmonitored sales email.", "Receives inbound traffic, but conversion paths lead to weak contacts.", "Captures standard requests, but conversion is unmonitored.", "Consistently converts digital interest into trackable inquiries.", "Operates as a 24/7 sales qualifier isolating high-priority targets."] },
+            { id: 7, name: "Q7: Competitive Problem Dominance", desc: "When market asset owners face sudden equipment failures, does your ecosystem outrank competitors?", p: 0.80, r: 0.20, o: 0.00, levels: ["Competitors control the entire digital space; firm remains invisible.", "Competitors own primary keywords; team left with residual traffic.", "Ranks alongside local competitors, falls behind on premium topics.", "Reliable positioning alongside major players for targeted problems.", "Authoritative positioning ensures solutions are recommended first."] },
+            { id: 8, name: "Q8: Rolodex Dependency and Revenue Risk", desc: "How insulated is your pipeline from total reliance on legacy trade shows or personal referrals?", p: 0.20, r: 0.70, o: 0.10, levels: ["100% dependent; new development is reactive and word-of-mouth.", "Highly dependent; internal staff fails to build fresh pipelines.", "Moderate diversification; major dips follow trade show cycles.", "Balanced demand mix with active outbound targeting running.", "Complete self-reliance via data-harvesting and account campaigns."] },
+            { id: 9, name: "Q9: Pipeline Volume Consistency", desc: "How predictable and steady is your month-to-month intake volume of new qualified B2B opportunities?", p: 0.10, r: 0.70, o: 0.20, levels: ["Extreme 'feast-or-famine' cycles; idle crews vs backlogs.", "Minor seasonal trends are predictable, but upcoming health is volatile.", "Moderately steady, but pipeline gaps appear without automation.", "Consistent, reliable flow allowing structured labor scheduling.", "Predictable, data-driven velocity empowering capital allocations."] },
+            { id: 10, name: "Q10: Outbound Database Decay and Precision", desc: "How precise and scrubbed are your outbound prospecting databases when targeting asset managers?", p: 0.10, r: 0.60, o: 0.30, levels: ["Non-existent; sales teams work from outdated personal rolodexes.", "Basic directories exist, but data records lack direct extensions.", "Lists are clean, but lack deep segmentation by Deep Constraint Diagnosis parameters.", "Access to clean, updated contact directories targeting actual buyers.", "Advanced data-harvesting tools compile immaculate targeted profiles."] },
+            { id: 11, name: "Q11: Account-Based Marketing (ABM) Execution", desc: "How intentionally do you run multi-channel campaigns to warm up enterprise accounts before calls?", p: 0.30, r: 0.60, o: 0.10, levels: ["Zero strategic targeting; reps resort to cold calling/drop-ins.", "Occasional emails sent, but lacks programmatic coordination.", "Runs baseline digital ads targeting broad industries instead of targets.", "Targeted case study campaigns reach key plant stakeholders.", "Integrated ABM systems deploy laser-targeted wins prior to outreach."] },
+            { id: 12, name: "Q12: Pipeline Dark Zones and Accountability", desc: "How clearly can management track opportunity progression once an inbound lead is handed over?", p: 0.10, r: 0.50, o: 0.40, levels: ["Complete dark zone; tracking stops until contract signed/lost.", "Rely on informal team check-ins or manual spreadsheets.", "Pipeline stages visible for direct sales, third-party unmonitored.", "Standardized documentation tracks handoff dates and current status.", "Complete full-funnel visibility tracks progression velocity automatically."] },
+            { id: 13, name: "Q13: Sniper Outreach Personalization", desc: "How targeted, personalized, and relevant are your automated outbound sales communications?", p: 0.20, r: 0.70, o: 0.10, levels: ["Communications non-existent or read as automated spam.", "Reps send one-off emails, but messaging is generic feature-dump.", "Consistent email outreach maintained, but lacks plant pain profiles.", "Outbound messages target specific functions with case studies.", "Automated 1-to-1 cadences mimic direct personal notes from leaders."] },
+            { id: 14, name: "Q14: Sales Response Velocity (SLA)", desc: "What is the exact time-to-contact gap between an asset owner request and an estimator engagement?", p: 0.10, r: 0.50, o: 0.40, levels: ["Inquiries routinely sit for days; missing strict project windows.", "Inbound leads assigned in 24hrs, but outreach depends on memory.", "Fast response for existing premium, new requests face uneven times.", "Clear internal rules require follow-up within a few business hours.", "Automated tracking triggers instant system logging and rapid routing."] },
+            { id: 15, name: "Q15: Marketing Attribution Loops", desc: "How reliably can leadership trace closed-won RFPs back to their exact digital or data source?", p: 0.30, r: 0.20, o: 0.50, levels: ["Zero attribution; commercial spending treated as sunk cost.", "Sourcing relies entirely on guessing or asking 'How did you hear?'", "Can trace direct website forms, cannot tie offline or email databases.", "Tracks and maps the true source of origin for majority of proposals.", "Hard-coded campaign attribution loops connect cadences to won RFPs."] },
+            { id: 16, name: "Q16: Commercial Stage-Gate and Bottleneck Mapping", desc: "How precisely can management isolate specific steps where high-stakes deals slow down?", p: 0.10, r: 0.40, o: 0.50, levels: ["Completely blind; management notices blocks after account loss.", "Rely on subjective rep opinions or reactive retroactive debriefs.", "High-level stage delays visible, root causes cannot be isolated.", "Regular visibility tracks deal delays across territories and reps.", "Advanced analytical reporting isolates stalls by stage, estimator, etc."] },
+            { id: 17, name: "Q17: Lead Routing and Administrative Drag", desc: "How automated and frictionless is the internal process that moves a hot inquiry into a logged profile?", p: 0.00, r: 0.30, o: 0.70, levels: ["Completely manual; copied across multiple fragile spreadsheets.", "Notifications trigger email alert, assignment relies on manual routing.", "Leads flow into central system, but assignment rules remain uneven.", "Clear data protocols ensure incoming opportunities route correctly.", "Secure, non-disruptive routing automation removes administrative drag."] },
+            { id: 18, name: "Q18: CRM Pipeline Integrity and Ledger Accuracy", desc: "How disciplined and integrated is your CRM to serve as the single ledger for your pipeline?", p: 0.10, r: 0.30, o: 0.60, levels: ["No CRM used consistently; client records live in field notebooks.", "System licensed, but field data entry is highly erratic/missing.", "Serves as basic digital rolodex, deal stages/bid values out of date.", "Actively utilized, serving as reliable point for monthly reviews.", "Marketing automation layers sync perfectly with enterprise CRMs."] },
+            { id: 19, name: "Q19: Data-Driven Capital Spending", desc: "How often and effectively does your leadership team use performance data to adjust marketing spend?", p: 0.30, r: 0.30, o: 0.40, levels: ["Rarely or never; strategic planning relies on historical tradition.", "Strategy shifts happen reactively after major multi-month drops.", "Quarterly adjustments occur, but decisions lack solid validation.", "Regular reviews use standardized pipeline reporting to steer focus.", "Clear performance data guides capital investment via real-time data."] },
+            { id: 20, name: "Q20: Workforce Mobilization and Sales Capacity Sync", desc: "How effectively does your pipeline tracking connect forecasts with field crew mobilization?", p: 0.00, r: 0.40, o: 0.60, levels: ["Completely disconnected; sales closes without knowing crew capacity.", "Communication happens informally via calls, lacks system visibility.", "Sales checks central calendars, but real-time updates not integrated.", "Standard protocols track upcoming field technician schedules.", "Pipeline tracking reflects active field capacity and workforce constraints."] },
+            { id: 21, name: "Q21: Cross-Functional Growth Alignment", desc: "How aligned are your marketing, direct sales, operations, and external channel partners?", p: 0.20, r: 0.30, o: 0.50, levels: ["Disconnected silos; departments blame each other for lost bids.", "Coordination happens informally, overall messaging remains inconsistent.", "General agreement on goals, distinct operational gaps persist.", "Integrated corporate targets keep standard campaigns moving forward.", "Total alignment; messaging, front-office, and field scheduling run with system logic."] }
+        ];
+
+        let currentStep = 0; 
+        const questionsPerStep = 3;
+        const totalSteps = 7;
+        let userResponses = {}; 
+
+        function initializeDiagnosticSession() {
+            cemaMatrix.forEach(q => {
+                userResponses[q.id] = { val: 0, engaged: false };
+            });
+            currentStep = 0;
+            renderActiveStepQuestions();
+        }
+
+        function renderActiveStepQuestions() {
+            const container = document.getElementById('diag-questions-container');
+            if(!container) return;
+            container.innerHTML = "";
+            document.getElementById('diag-error-banner').style.display = 'none';
+
+            const startIndex = currentStep * questionsPerStep;
+            const endIndex = startIndex + questionsPerStep;
+            const stepItems = cemaMatrix.slice(startIndex, endIndex);
+
+            document.getElementById('current-step-display').innerText = currentStep + 1;
+            document.getElementById('current-range-display').innerText = (startIndex + 1) + " - " + endIndex;
+
+            stepItems.forEach(q => {
+                const block = document.createElement('div');
+                block.className = 'question-block';
+                block.id = 'diag-block-' + q.id;
+
+                const state = userResponses[q.id];
+                const activeEngagedClass = state.engaged ? "active-engaged" : "";
+                const indicatorText = state.engaged ? q.levels[state.val - 1] : "Uncharted — Select operational capability level to proceed";
+                const indicatorActiveClass = state.engaged ? "active" : "";
+
+                block.innerHTML = '\
+                    <div class="question-title">' + q.name + '</div>\
+                    <div class="question-desc">' + q.desc + '</div>\
+                    <div class="slider-container">\
+                        <input type="range" id="diag-q-' + q.id + '" min="0" max="5" value="' + state.val + '" class="' + activeEngagedClass + '" oninput="registerDiagSliderInput(' + q.id + ')">\
+                    </div>\
+                    <div class="level-indicator ' + indicatorActiveClass + '" id="diag-indicator-' + q.id + '">' + indicatorText + '</div>\
+                ';
+                container.appendChild(block);
+            });
+
+            document.getElementById('diag-prev-btn').disabled = (currentStep === 0);
+            
+            if (currentStep === totalSteps - 1) {
+                document.getElementById('diag-next-btn').style.display = 'none';
+                document.getElementById('diag-calc-btn').style.display = 'inline-block';
+            } else {
+                document.getElementById('diag-next-btn').style.display = 'inline-block';
+                document.getElementById('diag-calc-btn').style.display = 'none';
+            }
+        }
+
+        function registerDiagSliderInput(id) {
+            const slider = document.getElementById('diag-q-' + id);
+            const block = document.getElementById('diag-block-' + id);
+            const indicator = document.getElementById('diag-indicator-' + id);
+            
+            if (!slider.classList.contains('active-engaged')) {
+                slider.classList.add('active-engaged');
+                if (slider.value == 0) slider.value = 1;
+                indicator.classList.add('active');
+            }
+            
+            if (slider.value == 0) slider.value = 1;
+
+            const val = parseInt(slider.value);
+            const qData = cemaMatrix.find(q => q.id === id);
+            indicator.innerText = qData.levels[val - 1];
+            block.classList.remove('missing-field');
+
+            userResponses[id].val = val;
+            userResponses[id].engaged = true;
+        }
+
+        function validateCurrentStep() {
+            const startIndex = currentStep * questionsPerStep;
+            const endIndex = startIndex + questionsPerStep;
+            const stepItems = cemaMatrix.slice(startIndex, endIndex);
+            let stepValid = true;
+
+            stepItems.forEach(q => {
+                const state = userResponses[q.id];
+                const block = document.getElementById('diag-block-' + q.id);
+                if (!state.engaged || state.val === 0) {
+                    stepValid = false;
+                    if (block) block.classList.add('missing-field');
+                }
+            });
+
+            return stepValid;
+        }
+
+        function navigateStep(direction) {
+            if (direction === 1) {
+                if (!validateCurrentStep()) {
+                    document.getElementById('diag-error-banner').style.display = 'block';
+                    return;
+                }
+            }
+
+            currentStep += direction;
+            renderActiveStepQuestions();
+            document.querySelector('.diag-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetDiagnosticEngine() {
+            initializeDiagnosticSession();
+            const mainLayout = document.getElementById('diag-main-layout');
+            const resultsPanel = document.getElementById('diag-results-panel');
+            mainLayout.classList.remove('results-active');
+            resultsPanel.style.display = 'none';
+            document.getElementById('diag-reset-btn').style.display = 'none';
+        }
+
+        function getAuditorCritique(id, score) {
+            const lowCritiques = {
+                1: "Your market visibility remains entirely structural boilerplate. Procurement filters reject generic messaging.",
+                2: "Asset owners cannot discover your presence unless explicitly using your corporate registry entity name.",
+                3: "AI optimization layers are completely missing. ChatGPT/Gemini cannot parse your operational data.",
+                6: "Qualified web incoming traffic drops into an unmonitored digital mailbox, missing prompt validation scopes.",
+                8: "Your growth strategy runs with severe systemic risk due to total dependency on historical personal relationships."
+            };
+            return lowCritiques[id] || "Capability mapping processes show optimization vulnerabilities inside this baseline tracking vector.";
+        }
+
+        function validateAndCalculateDiag() {
+            if (!validateCurrentStep()) {
+                document.getElementById('diag-error-banner').style.display = 'block';
+                return;
+            }
+
+            let completeValid = true;
+            cemaMatrix.forEach(q => {
+                if (!userResponses[q.id].engaged) completeValid = false;
+            });
+
+            if (!completeValid) {
+                alert("Audit Error: System logs indicate configuration steps profile gap.");
+                return;
+            }
+
+            document.getElementById('diag-error-banner').style.display = 'none';
+
+            let sumRawS = 0;
+            let pRaw = 0;
+            let rRaw = 0;
+            let oRaw = 0;
+            let customAuditNotes = [];
+
+            cemaMatrix.forEach(q => {
+                const val = userResponses[q.id].val;
+                sumRawS += val;
+                pRaw += val * q.p;
+                rRaw += val * q.r;
+                oRaw += val * q.o;
+
+                if (val < 5) {
+                    customAuditNotes.push({ id: q.id, name: q.name, score: val });
+                }
+            });
+
+            const globalNormalized = Math.round(((sumRawS - 21) / 84) * 100);
+            const pNormalized = Math.round(((pRaw - 6.60) / 26.40) * 100);
+            const rNormalized = Math.round(((rRaw - 8.10) / 32.40) * 100);
+            const oNormalized = Math.round(((oRaw - 6.30) / 25.20) * 100);
+
+            document.getElementById('diag-global-score-output').innerText = globalNormalized;
+            document.getElementById('diag-p-score-txt').innerText = pNormalized + '%';
+            document.getElementById('diag-p-bar').style.width = pNormalized + '%';
+            document.getElementById('diag-r-score-txt').innerText = rNormalized + '%';
+            document.getElementById('diag-r-bar').style.width = rNormalized + '%';
+            document.getElementById('diag-o-score-txt').innerText = oNormalized + '%';
+            document.getElementById('diag-o-bar').style.width = oNormalized + '%';
+
+            let macroCritique = "";
+            let badgeColor = "var(--muted-purple)";
+            let badgeName = "REPORT GENERATED";
+
+            if (globalNormalized <= 39) {
+                badgeColor = "var(--tier1)";
+                badgeName = "TIER 1: REACTIVE / AT RISK";
+                macroCritique = "<strong>Auditor Macro Assessment: Danger Zone.</strong> Your operational workflow functions reactively, making execution highly volatile. Revenue is exposed to sudden market cycles or shifts in personal rolodex networks rather than an institutionalized system. Severe front-office execution lag and pipeline dark zones place an artificial ceiling on your field technician mobilization potential.";
+            } else if (globalNormalized <= 64) {
+                badgeColor = "var(--tier2)";
+                badgeName = "TIER 2: FRAGMENTED CAPACITIES";
+                macroCritique = "<strong>Auditor Macro Assessment: The Constraints Trap.</strong> Scoring within this window indicates severe systemic drift. While individual technicians perform well in the field, front-office workflows are uncoordinated and create structural constraints. Your web layers act as passive brochures, outbound prospect data is decaying, and field estimators form an unmonitored tracking dark zone that drains overall sales velocity.";
+            } else if (globalNormalized <= 84) {
+                badgeColor = "var(--tier3)";
+                badgeName = "TIER 3: SYSTEMATIC VELOCITY";
+                macroCritique = "<strong>Auditor Macro Assessment: Sub-Optimized Performance.</strong> Process architecture is mostly sound, and your inbound channels generate a predictable intake volume. However, relying on partial software configurations and manual handoffs introduces administrative drag, exposing your profit margins to unnecessary erosion during high-volume periods.";
+            } else {
+                badgeColor = "var(--tier4)";
+                badgeName = "TIER 4: FORGE-ENGINEERED ENGINE";
+                macroCritique = "<strong>Auditor Macro Assessment: High Efficiency Operational Architecture.</strong> The business operates with excellent structural synchronization. Multi-variable attribution is clear, and automated handoffs pass verified targets cleanly to regional managers without administrative drag.";
+            }
+
+            const badge = document.getElementById('diag-tier-badge-output');
+            badge.innerText = badgeName;
+            badge.style.backgroundColor = badgeColor;
+
+            let blueprintHTML = '<div class="diag-blueprint-box"><strong>Executive Audit Summary:</strong><br><p>' + macroCritique + '</p>';
+            
+            let criticalItems = customAuditNotes.filter(n => n.score <= 2);
+            if (criticalItems.length > 0) {
+                blueprintHTML += '<div class="diag-audit-header" style="color:#b91c1c;">Critical Operational Leakage (Scores 1-2)</div>';
+                blueprintHTML += '<ul class="diag-gap-list">';
+                criticalItems.forEach(item => {
+                    blueprintHTML += '<li class="diag-gap-item"><strong>' + item.name + ':</strong> ' + getAuditorCritique(item.id, item.score) + '</li>';
+                });
+                blueprintHTML += '</ul>';
+            }
+
+            let optimizeItems = customAuditNotes.filter(n => n.score === 3 || n.score === 4);
+            if (optimizeItems.length > 0) {
+                blueprintHTML += '<div class="diag-audit-header" style="color:#d97706;">Sub-Optimized Value Drains (Scores 3-4)</div>';
+                blueprintHTML += '<ul class="diag-gap-list">';
+                optimizeItems.forEach(item => {
+                    blueprintHTML += '<li class="diag-gap-item"><strong>' + item.name + ':</strong> ' + getAuditorCritique(item.id, item.score) + '</li>';
+                });
+                blueprintHTML += '</ul>';
+            }
+
+            blueprintHTML += '</div>';
+            document.getElementById('diag-blueprint-output').innerHTML = blueprintHTML;
+
+            const inputs = document.querySelectorAll('#diag-questions-container input[type="range"]');
+            inputs.forEach(i => i.disabled = true);
+
+            document.getElementById('diag-calc-btn').style.display = 'none';
+            document.getElementById('diag-prev-btn').style.display = 'none';
+            document.getElementById('diag-reset-btn').style.display = 'inline-block';
+            
+            const mainLayout = document.getElementById('diag-main-layout');
+            const resultsPanel = document.getElementById('diag-results-panel');
+            mainLayout.classList.add('results-active');
+            resultsPanel.style.display = 'block';
+
+            setTimeout(() => {
+                resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
