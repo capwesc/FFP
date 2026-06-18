@@ -415,9 +415,20 @@
         .infra-spec-list li { font-size: 0.85rem; color: #CBD5E1; padding-left: 14px; position: relative; margin-bottom: 6px; font-weight: 600; }
         .infra-spec-list li::before { content: "▪"; position: absolute; left: 0; color: var(--industrial-green); }
 
-        /* Blueprint Card Matrices */
-        .blueprint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
-        .blueprint-grid .blueprint-card { 
+        /* Blueprint Card Matrices (Optimized layout parameters tracking core pillars cleanly) */
+        .blueprint-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: left; }
+        
+        @media (max-width: 900px) {
+            .blueprint-grid { grid-template-columns: 1fr; }
+        }
+
+        .blueprint-grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
+
+        @media (max-width: 900px) {
+            .blueprint-grid-4col { grid-template-columns: 1fr; }
+        }
+
+        .blueprint-grid .blueprint-card, .blueprint-grid-4col .blueprint-card { 
             background-color: var(--midnight); 
             border: 1px solid rgba(255, 255, 255, 0.05); 
             display: flex; 
@@ -425,7 +436,7 @@
             position: relative;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .blueprint-grid .blueprint-card:hover {
+        .blueprint-grid .blueprint-card:hover, .blueprint-grid-4col .blueprint-card:hover {
             transform: scale(1.02);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
             border-color: var(--industrial-green);
@@ -433,8 +444,8 @@
         .blueprint-card-header { background-color: var(--graphite); color: var(--pure-white); padding: 8px 12px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .blueprint-card-body { padding: 20px; flex-grow: 1; text-align: left; position: relative; }
         .blueprint-card-num { font-size: 2.2rem; font-weight: 800; color: var(--industrial-green) !important; line-height: 1; margin-bottom: 5px; text-align: left; font-family: 'Space Mono', monospace; transition: color 0.3s ease; }
-        .blueprint-card-body h3 { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.3; text-align: left; color: #FFFFFF; }
-        .blueprint-card-body p { font-size: 0.82rem; color: #94A3B8; line-height: 1.5; text-align: left; }
+        .blueprint-card-body h3 { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.3; text-align: left; color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.5px; }
+        .blueprint-card-body p { font-size: 0.85rem; color: #CBD5E1; line-height: 1.6; text-align: left; margin-bottom: 8px; }
         .blueprint-letter-overlay { position: absolute; top: 15px; right: 20px; font-family: 'Montserrat', sans-serif; font-weight: 800; color: rgba(76, 195, 138, 0.07); pointer-events: none; line-height: 1; }
         .blueprint-letter-overlay.size-regular { font-size: 3.5rem; }
         .blueprint-letter-overlay.size-xlarge { font-size: 5rem; }
@@ -507,89 +518,6 @@
         table.matrix-data-table td { padding: 12px; border: 1px solid var(--border-oxidized); vertical-align: top; transition: background-color 0.2s ease; }
         table.matrix-data-table tr:hover td { background-color: rgba(124, 58, 237, 0.03); }
         table.matrix-data-table tr:nth-child(even) td { background-color: #F1F3F5; }
-
-        /* --- CONTACT TAB SCHEMATICS --- */
-        .intake-header-box { background-color: var(--midnight); color: #FFFFFF; text-align: center; }
-        .intake-header-box p { font-weight: 500; font-size: 0.95rem; max-width: 700px; margin: 0 auto 0 auto; color: #94A3B8; }
-        
-        .status-marker-capsule-teal { display: block; font-family: 'Space Mono', monospace; background-color: var(--graphite); color: var(--pure-white); padding: 8px 16px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; margin-bottom: 10px; width: 100%; }
-        .status-marker-capsule-teal span.blink-light { width: 10px; height: 10px; background-color: var(--industrial-green); display: inline-block; margin-right: 8px; animation: system-blink 1.2s infinite ease-in-out; box-shadow: 0 0 8px var(--industrial-green); }
-        .origin-story-container { border: 1px solid var(--border-oxidized); position: relative; }
-        .origin-story-container h3 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid var(--border-oxidized); padding-bottom: 6px; }
-        
-        .contact-split-container { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 20px; align-items: stretch; margin-bottom: 25px; }
-        .right-column-stack { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
-        .contact-callout-card { background-color: var(--midnight); color: var(--pure-white); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
-        .contact-callout-card h4 { color: #FFFFFF; font-size: 1.1rem; margin-bottom: 15px; }
-        .contact-callout-card .cta-links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; width: 100%; }
-        .contact-callout-card .cta-link-btn { background: transparent; border: 1px solid var(--industrial-green); color: var(--industrial-green); padding: 12px; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; }
-        .contact-callout-card .cta-link-btn:hover { background: var(--industrial-green); color: var(--midnight); transform: scale(1.03); }
-
-        .industrial-form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .form-field-group { display: flex; flex-direction: column; }
-        .form-field-group label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; color: var(--text-dark); }
-        .form-input-element { width: 100%; padding: 12px; border: 1px solid var(--border-oxidized); background-color: #F1F3F5; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
-        .form-input-element:focus { outline: none; border-color: var(--muted-purple); background-color: var(--pure-white); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
-        .form-radio-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-        .radio-item-label { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer; font-weight: 500; }
-        .radio-item-label input { margin-right: 10px; width: 16px; height: 16px; accent-color: var(--muted-purple); }
-        .submit-large-cta { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; background-color: var(--industrial-green); color: var(--midnight); border: none; padding: 18px 30px; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.5px; width: 100%; text-align: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .submit-large-cta:hover { background-color: #74dfab; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76, 195, 138, 0.3); }
-
-        /* --- DIAGNOSTIC INDEX ENGINE VISUALS --- */
-        .diagnostic-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 24px; }
-        @media (min-width: 900px) { .diagnostic-container.results-active { grid-template-columns: 3fr 2fr; } }
-        
-        .diag-header { background: var(--midnight); color: white; padding: 30px 20px; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--muted-purple); position: relative; }
-        .diag-header h1 { color: #FFFFFF; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.5px; text-align: center; width: 100%; }
-
-        .diag-intro-card { background: white; padding: 24px; border: 1px solid var(--border-oxidized); margin-bottom: 5px; }
-        .diag-card { background: white; padding: 24px; border: 1px solid var(--border-oxidized); height: fit-content; }
-        .question-block { margin-bottom: 24px; padding: 20px; border: 1px solid var(--border-oxidized); background-color: #ffffff; transition: background-color 0.4s ease, border-color 0.4s ease; }
-        .question-block.missing-field { background-color: var(--error-bg); border-color: var(--error-border); box-shadow: 0 0 0 1px var(--error-border); }
-        .question-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; text-transform: none; color: var(--midnight); }
-        .question-desc { font-size: 0.9rem; color: #475569; margin-bottom: 14px; font-style: italic; }
-        .slider-container { display: flex; align-items: center; width: 100%; }
-        input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; height: 32px; margin: 0; cursor: pointer; }
-        input[type="range"]::-webkit-slider-run runnable-track { width: 100%; height: 8px; background: var(--track-unselected); transition: background-color 0.3s ease; }
-        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: var(--thumb-unselected); height: 20px; width: 20px; border: 2px solid white; margin-top: -6px; transition: background-color 0.3s ease, scale 0.2s ease; }
-        input[type="range"]:active::-webkit-slider-thumb { scale: 1.2; }
-        input[type="range"].active-engaged::-webkit-slider-runnable-track { background: #C7D2FE; }
-        input[type="range"].active-engaged::-webkit-slider-thumb { background: var(--muted-purple); box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4); }
-        .level-indicator { font-size: 0.9rem; margin-top: 12px; font-weight: 600; color: #64748b; background: #f8fafc; padding: 10px 14px; border-left: 4px solid var(--track-unselected); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .level-indicator.active { color: #1e293b; border-left-color: var(--muted-purple); background: rgba(124, 58, 237, 0.04); }
-        .validation-alert { display: none; background-color: var(--error-bg); border: 1px solid var(--error-border); color: #b91c1c; padding: 16px; margin-bottom: 24px; font-weight: 600; }
-        
-        .step-progress-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: var(--soft-stone); padding: 12px 20px; font-family: 'Space Mono', monospace; font-weight: 700; }
-        .diag-action-container { display: flex; gap: 15px; margin-top: 25px; }
-        .diag-btn { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; padding: 14px 28px; font-size: 0.85rem; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .diag-submit-btn { background-color: var(--industrial-green); color: var(--midnight); }
-        .diag-submit-btn:hover { background-color: #74dfab; transform: translateY(-1px); }
-        .diag-nav-btn { background-color: var(--graphite); color: white; }
-        .diag-nav-btn:hover:not(:disabled) { background-color: var(--midnight); transform: translateY(-1px); }
-        .diag-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-        /* STICKY PANEL OUTPUT ENGINE VISUALS */
-        .diag-sticky-panel { display: none; height: fit-content; }
-        .diag-score-display { text-align: center; background-color: var(--midnight); padding: 20px; border: 1px solid var(--graphite); }
-        .diag-score-display h3 { color: #FFFFFF; }
-        .diag-global-score { font-size: 4rem; font-weight: 900; color: var(--industrial-green); margin: 10px 0; font-family: 'Space Mono', monospace; }
-        .diag-tier-badge { display: inline-block; padding: 6px 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: white; font-size: 0.8rem; letter-spacing: 0.5px; }
-        .pillar-bar-container { margin-top: 15px; }
-        .pillar-label { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
-        .bar-bg { background-color: var(--track-unselected); height: 10px; width: 100%; }
-        .bar-fill { background-color: var(--muted-purple); height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        
-        .diag-blueprint-box { background-color: var(--soft-stone); border-left: 4px solid var(--muted-purple); padding: 20px; margin-top: 20px; font-size: 0.9rem; color: var(--text-dark); }
-        .diag-audit-header { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.95rem; margin-top: 20px; text-transform: uppercase; border-bottom: 1px solid var(--border-oxidized); padding-bottom: 4px; }
-        .diag-gap-list { list-style: none; padding-left: 0; margin-top: 10px; }
-        .diag-gap-item { font-size: 0.85rem; margin-bottom: 10px; padding-left: 14px; position: relative; color: #334155; }
-        .diag-gap-item::before { content: "▪"; position: absolute; left: 0; color: var(--muted-purple); }
-
-        .system-footer { background-color: var(--midnight); color: var(--soft-stone); padding: 40px 20px; border-top: 4px solid var(--muted-purple); font-size: 0.85rem; }
-        .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
-        .footer-inner p { color: var(--cool-gray); }
-        .footer-inner .corp-statement { font-weight: 700; color: #FFFFFF; text-transform: uppercase; font-family: 'Space Mono', monospace; letter-spacing: 1px; }
 
         @media (max-width: 992px) {
             .hero-layout { flex-direction: column; text-align: center; }
@@ -673,7 +601,7 @@
                         <div class="scorecard-brick">
                             <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
                             <div class="scorecard-header">
-                                <h3>The P.R.O.™ Framework Architecture</h3>
+                                <h3>THE P.R.O. FRAMEWORK™</h3>
                                 <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--industrial-green); text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
                                     <span class="pulse-dot"></span>System Operational Status
                                 </span>
@@ -720,19 +648,20 @@
                 </div>
             </section>
 
+            <!-- RE-ALIGNED SYMPTOM GAP MODULE: Scaled out to full 1200 grid layout containment parameters -->
             <section class="section-wrapper bg-white">
-                <div class="contained-1000">
+                <div class="contained-1200">
                     <div class="matrix-static-wrapper">
                         <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
                         <div class="matrix-static-title">
-                            Is Your Growth Problem Really A Marketing Problem?
+                            Where Do Your Structural Revenue Gaps Exist?
                         </div>
                         <table class="matrix-data-table">
                             <thead>
                                 <tr>
                                     <th>Observed Front-Office Symptom</th>
                                     <th>Engineered Systemic Root Cause</th>
-                                    <th>P.R.O.™ Structural Mapping</th>
+                                    <th>PRO Structural Mapping</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -768,19 +697,20 @@
                 </div>
             </section>
 
+            <!-- RESTORED SEQUENTIAL BLUEPRINT SECTION -->
             <section class="section-wrapper bg-graphite">
                 <div class="contained-1200">
                     <div class="section-header-block">
                         <h2>The Sequential Revenue Architecture Blueprint</h2>
                     </div>
 
-                    <div class="blueprint-grid">
+                    <div class="blueprint-grid-4col">
                         <div class="blueprint-card">
                             <div class="blueprint-card-header">Phase 01: Context Intake</div>
                             <div class="blueprint-card-body">
                                 <div class="blueprint-card-num">01</div>
                                 <h3>Critical Constraint Diagnosis</h3>
-                                <p>We bypass generic corporate discovery calls. We run a rigorous operational stress-test across your business data to map exact pipeline stalls, tracking leaks, and technical capacity blind spots holding back your scale.</p>
+                                <p>We bypass generic discovery calls. We run a rigorous operational stress-test across your business data to map exact pipeline stalls and technical capacity blind spots.</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
@@ -789,7 +719,7 @@
                                 <div class="blueprint-card-num">02</div>
                                 <div class="blueprint-letter-overlay size-regular">P</div>
                                 <h3>Market Performance Engineering™</h3>
-                                <p>Improve how your company is discovered, researched, and evaluated by prospective asset buyers. We align website technical architecture, non-branded organic visibility, and next-generation Answer Engine Optimization (AEO).</p>
+                                <p>Improve how your company is discovered, researched, and evaluated. We align website technical architecture, non-branded search visibility, and next-gen AI answer engine logic.</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
@@ -798,7 +728,7 @@
                                 <div class="blueprint-card-num">03</div>
                                 <div class="blueprint-letter-overlay size-regular">R</div>
                                 <h3>Pipeline Ramp Activation™</h3>
-                                <p>Convert market attention into highly qualified enterprise contract opportunities through structured data harvesting, account-based targeting, and disciplined field sales enablement playbooks.</p>
+                                <p>Convert market attention into qualified enterprise opportunities through database harvesting, multi-channel account-based campaigns, and structured prospecting.</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
@@ -807,57 +737,57 @@
                                 <div class="blueprint-card-num">04</div>
                                 <div class="blueprint-letter-overlay size-xlarge">O</div>
                                 <h3>Workflow Output Automation™</h3>
-                                <p>Reduce front-office administrative drag and manual handoff errors through robust enterprise CRM configuration, smart routing logic, and real-time leadership analytics matrices.</p>
+                                <p>Reduce front-office administration drag and handoff errors through enterprise CRM optimization, automated lead routing, and hard-coded full-funnel reporting parameters.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- CORE GRID CARD CHECKLIST MODULE -->
             <section class="section-wrapper bg-stone">
                 <div class="contained-1200">
                     <div class="section-header-block">
-                        <h2>Operational Performance Framework: What We Help Clients Measure</h2>
+                        <h2>P.R.O. FRAMEWORK PILLARS™</h2>
                     </div>
                     <div class="blueprint-grid">
+                        <!-- Card Container 1: MARKET PERFORMANCE -->
                         <div class="blueprint-card">
-                            <div class="blueprint-card-header" style="background:var(--midnight);">Market Performance Core</div>
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Market Performance Framework</div>
                             <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
-                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Digital Shell Integrity</h3>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Non-Branded Organic Visibility</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Answer Engine Sourcing Index</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Target Procurement Vetting Rate</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Asset-Class Message Penetration</p>
+                                <h3>MARKET PERFORMANCE</h3>
+                                <p style="font-weight: 600;">✓ Search Visibility</p>
+                                <p style="font-weight: 600;">✓ AI Discoverability</p>
+                                <p style="font-weight: 600;">✓ Brand Authority</p>
+                                <p style="font-weight: 600;">✓ Website Conversion</p>
+                                <p style="font-weight: 600;">✓ Message Clarity</p>
+                                <p style="margin-bottom:0px; font-weight: 600;">✓ Competitive Positioning</p>
                             </div>
                         </div>
+                        <!-- Card Container 2: PIPELINE RAMP -->
                         <div class="blueprint-card">
-                            <div class="blueprint-card-header" style="background:var(--midnight);">Pipeline Velocity Core</div>
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Pipeline Velocity Framework</div>
                             <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
-                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Ramp Mechanics</h3>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Total Qualified Opportunities</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Stage-Gate Pitch Velocity</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Formal Proposal Conversion %</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Tier-1 Enterprise Sourcing Flow</p>
+                                <h3>PIPELINE RAMP</h3>
+                                <p style="font-weight: 600;">✓ ICP Coverage</p>
+                                <p style="font-weight: 600;">✓ Account Engagement</p>
+                                <p style="font-weight: 600;">✓ Qualified Opportunities</p>
+                                <p style="font-weight: 600;">✓ Pipeline Velocity</p>
+                                <p style="font-weight: 600;">✓ Meeting Conversion</p>
+                                <p style="margin-bottom:0px; font-weight: 600;">✓ Account Penetration</p>
                             </div>
                         </div>
+                        <!-- Card Container 3: WORKFLOW OUTPUT -->
                         <div class="blueprint-card">
-                            <div class="blueprint-card-header" style="background:var(--midnight);">Automation Integrity Core</div>
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Automation Integrity Framework</div>
                             <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
-                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Workflow Output</h3>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Systemic CRM Adoption Rates</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Estimator Response Window (SLA)</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Administrative Labor Leakage</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Full-Funnel Financial Attribution</p>
-                            </div>
-                        </div>
-                        <div class="blueprint-card">
-                            <div class="blueprint-card-header" style="background:var(--midnight);">EBITDA Impact Metrics</div>
-                            <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
-                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Asset Optimization</h3>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Crew Utilization Capacity</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Customer Acquisition Cost (CAC)</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Specialized Account Margin Rate</p>
-                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Multi-Year Contract Backlog Size</p>
+                                <h3>WORKFLOW OUTPUT</h3>
+                                <p style="font-weight: 600;">✓ CRM Adoption & Efficacy</p>
+                                <p style="font-weight: 600;">✓ Automation Coverage</p>
+                                <p style="font-weight: 600;">✓ Routing Accuracy</p>
+                                <p style="font-weight: 600;">✓ Administrative Efficiency</p>
+                                <p style="font-weight: 600;">✓ Data Integrity</p>
+                                <p style="margin-bottom:0px; font-weight: 600;">✓ Process Compliance</p>
                             </div>
                         </div>
                     </div>
@@ -866,6 +796,7 @@
 
         </div>
 
+        <!-- ABOUT TAB SCHEMATICS -->
         <div id="about-view" class="page-view">
             
             <section class="full-width-strip about-title-header">
@@ -941,6 +872,7 @@
 
         </div>
 
+        <!-- CAPABILITIES TAB SCHEMATICS -->
         <div id="services-view" class="page-view">
             
             <section class="section-wrapper bg-white">
@@ -1036,7 +968,7 @@
                                     <div class="infra-sub-block" style="grid-column: span 2;">
                                         <span class="protocol-label">[ENG-PROTOCOL 03.C]</span>
                                         <h4>New Vertical Integration Roadmaps</h4>
-                                        <p>Executing structured market expansion strategies into highly regulated sectors (e.g., penetrating the Power, Utilities, or Heavy Infrastructure markets) without diluting core brand authority, positioning mobilized crews as specialized protectors of critical assets.</p>
+                                        <p>Executing structured market expansion strategies into highly regulated sectors (e.g., penetrating the Power, Utilities, or Heavy Infrastructure markets) without diluting brand authority, positioning mobilized crews as specialized protectors of critical assets.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1127,6 +1059,7 @@
 
         </div>
 
+        <!-- CONTACT INTERFACE TAB -->
         <div id="contact-view" class="page-view">
             
             <section class="full-width-strip intake-header-box">
@@ -1227,6 +1160,7 @@
 
         </div>
 
+        <!-- ACTIVE AUDIT ENGINE VIEW -->
         <div id="diagnostic-view" class="page-view">
             
             <div class="diag-header">
