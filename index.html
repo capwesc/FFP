@@ -6,7 +6,7 @@
     <title>FieldForge Partners - Operational & Commercial Engineering Platform</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* CSS RESET, PALETTE SCHEMA & VARIABLES */
         * {
@@ -20,26 +20,27 @@
             /* Palette Theme Mappings */
             --midnight: #0A0E1A;
             --graphite: #1A1F2E;
-            --neon-lime: #4CC38A;
+            --industrial-green: #4CC38A;
             --muted-purple: #7C3AED;
             --soft-stone: #F5F5F4;
-            --cool-gray: #9CA3AF;
-            --text-dark: #0F172A;
+            --cool-gray: #5A6A72;
+            --text-dark: #1C2526;
+            --border-oxidized: #3A3F47;
 
             /* Platform Engine Base Elements */
-            --pure-white: #FFFFFF;
+            --pure-white: #FAFBFC;
             --border-gray: #E5E7EB;
-            --text-muted: #6B7280;
+            --text-muted: #5A6A72;
             
             /* Diagnostic Calculator States */
             --tier1: #EF4444;
             --tier2: var(--muted-purple);
-            --tier3: #F59E0B;
-            --tier4: var(--neon-lime);
+            --tier3: #FF8C00;
+            --tier4: var(--industrial-green);
             --error-bg: #FEF2F2;
             --error-border: #F87171;
             --track-unselected: #E5E7EB;
-            --thumb-unselected: #9CA3AF;
+            --thumb-unselected: #5A6A72;
         }
 
         body {
@@ -74,7 +75,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             font-size: 1.2rem;
             letter-spacing: -0.5px;
@@ -97,8 +98,8 @@
             content: '';
             position: absolute;
             top: 4px; left: 4px; right: 4px; bottom: 4px;
-            border-top: 4px solid var(--neon-lime);
-            border-left: 4px solid var(--neon-lime);
+            border-top: 4px solid var(--industrial-green);
+            border-left: 4px solid var(--industrial-green);
         }
 
         nav .nav-tabs {
@@ -111,7 +112,7 @@
             background: none;
             border: none;
             padding: 10px 20px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -128,17 +129,17 @@
         }
 
         nav .nav-tabs button.active-tab {
-            color: var(--neon-lime);
-            border-bottom: 3px solid var(--neon-lime);
-            background-color: rgba(163, 255, 18, 0.04);
+            color: var(--industrial-green);
+            border-bottom: 3px solid var(--industrial-green);
+            background-color: rgba(76, 195, 138, 0.04);
         }
 
         .header-cta {
-            background-color: var(--neon-lime);
+            background-color: var(--industrial-green);
             color: var(--midnight);
             border: none;
             padding: 11px 20px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -147,9 +148,9 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .header-cta:hover { 
-            background-color: #BEFF44;
+            background-color: #74dfab;
             transform: translateY(-1px);
-            box-shadow: 0 4px 15px rgba(163, 255, 18, 0.3);
+            box-shadow: 0 4px 15px rgba(76, 195, 138, 0.3);
         }
 
         /* HIGH-PERFORMANCE ANIMATION LAYER */
@@ -172,7 +173,7 @@
         .bg-midnight { background-color: var(--midnight); color: #FFFFFF; }
         .bg-graphite { background-color: var(--graphite); color: #FFFFFF; }
         .bg-stone { background-color: var(--soft-stone); color: var(--text-dark); }
-        .bg-white { background-color: var(--pure-white); color: var(--text-dark); }
+        .bg-white { background-color: var(--pure-white); color: var(--text-dark); border: 1px solid var(--border-oxidized); }
 
         .contained-1200 { max-width: 1200px; margin: 0 auto; }
         .contained-1100 { max-width: 1100px; margin: 0 auto; }
@@ -182,7 +183,7 @@
 
         /* TYPOGRAPHY BLOCKS */
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             letter-spacing: -0.3px;
             font-weight: 700;
@@ -197,11 +198,11 @@
 
         /* INDUSTRIAL BUTTON INTERFACES */
         .btn-amber {
-            background-color: var(--neon-lime);
+            background-color: var(--industrial-green);
             color: var(--midnight);
             border: none;
             padding: 14px 28px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -212,9 +213,9 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .btn-amber:hover { 
-            background-color: #BEFF44; 
+            background-color: #74dfab; 
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(163, 255, 18, 0.3);
+            box-shadow: 0 6px 20px rgba(76, 195, 138, 0.3);
         }
 
         .btn-purple {
@@ -222,7 +223,7 @@
             color: #FFFFFF;
             border: none;
             padding: 14px 28px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -243,7 +244,7 @@
             border: 2px solid var(--muted-purple);
             color: var(--muted-purple);
             padding: 12px 26px;
-            font-family: 'Sora', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -276,7 +277,7 @@
             letter-spacing: 0.5px;
         }
         .bg-midnight .protocol-label, .bg-graphite .protocol-label {
-            color: var(--neon-lime);
+            color: var(--industrial-green);
         }
 
         .tech-crosshair {
@@ -313,19 +314,17 @@
         .pulse-dot {
             width: 10px;
             height: 10px;
-            background-color: var(--neon-lime);
+            background-color: var(--industrial-green);
             display: inline-block;
             animation: system-blink 1.2s infinite ease-in-out;
-            box-shadow: 0 0 8px var(--neon-lime);
+            box-shadow: 0 0 8px var(--industrial-green);
         }
 
         /* --- HOME TAB SCHEMATICS --- */
         .hero-layout { display: flex; align-items: center; gap: 40px; padding: 40px 0; }
-        .hero-left { flex: 1.1; }
+        .hero-left { flex: 1.1; border: none; }
         .hero-right {
-            flex: 0.9; background-color: var(--midnight); padding: 20px;
-            border: 2px solid var(--graphite); display: flex;
-            justify-content: center; align-items: center; min-height: 380px;
+            flex: 0.9; display: flex; justify-content: center; align-items: center;
         }
         .hero-left h1 { font-size: 2.3rem; line-height: 1.15; margin-bottom: 20px; letter-spacing: -1px; }
         .hero-left .hero-subtext {
@@ -333,6 +332,29 @@
             border-left: 4px solid var(--muted-purple); padding-left: 15px;
         }
         .hero-actions { display: flex; gap: 15px; margin-bottom: 25px; }
+
+        /* HERO ASSESSMENT INDEX CARD WIREFRAME */
+        .index-card-cta-container {
+            width: 100%; max-width: 400px; background-color: var(--midnight);
+            border: 3px double var(--industrial-green); padding: 30px; color: #FFFFFF;
+            font-family: 'Space Mono', monospace; box-shadow: 10px 10px 0px rgba(10, 14, 26, 0.15);
+            position: relative; text-align: center;
+        }
+        .index-card-header {
+            font-size: 0.85rem; color: var(--industrial-green); font-weight: 700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; margin-bottom: 15px;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .index-card-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800;
+            color: #FFFFFF; text-transform: uppercase; line-height: 1.2; margin-bottom: 15px;
+        }
+        .index-card-bullets {
+            text-align: left; margin: 20px auto; max-width: 240px; font-size: 0.9rem;
+            color: #94A3B8; list-style: none;
+        }
+        .index-card-bullets li { margin-bottom: 8px; position: relative; padding-left: 20px; }
+        .index-card-bullets li::before { content: "✓"; position: absolute; left: 0; color: var(--industrial-green); }
 
         .split-system-layout { display: flex; gap: 40px; }
         .split-system-left { flex: 1; }
@@ -355,12 +377,14 @@
             border-color: var(--muted-purple);
         }
         .scorecard-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--midnight); padding-bottom: 12px; margin-bottom: 20px; }
-        .scorecard-header h3 { font-size: 1rem; }
-        .scorecard-header span { font-size: 0.75rem; font-family: 'Space Mono', monospace; color: var(--cool-gray); }
+        
+        .scorecard-header h3 { font-size: 1rem; color: #FFFFFF !important; }
+        
+        .scorecard-header span { font-size: 0.75rem; font-family: 'Space Mono', monospace; color: #94A3B8; }
         .scorecard-metric-row { margin-bottom: 20px; }
         .metric-label-group { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; margin-bottom: 5px; }
-        .metric-label-group span.metric-tag { color: var(--neon-lime); }
-        .metric-sub { font-size: 0.75rem; font-weight: 600; color: var(--cool-gray); margin-bottom: 6px; }
+        .metric-label-group span.metric-tag { color: var(--industrial-green); }
+        .metric-sub { font-size: 0.75rem; font-weight: 600; color: #94A3B8; margin-bottom: 6px; }
         
         .progress-bar-bg { background-color: var(--midnight); height: 8px; width: 100%; position: relative; }
         .progress-bar-fill { background-color: var(--muted-purple); height: 100%; transition: width 1s ease-in-out; }
@@ -382,14 +406,14 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .infra-sub-block:hover {
-            border-color: var(--neon-lime);
+            border-color: var(--industrial-green);
             transform: translateY(-2px);
         }
         .infra-sub-block h4 { font-size: 0.95rem; color: #FFFFFF; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
         .infra-sub-block p { font-size: 0.88rem; color: #94A3B8; margin-bottom: 12px; }
         .infra-spec-list { list-style: none; padding-left: 0; margin-top: 10px;}
         .infra-spec-list li { font-size: 0.85rem; color: #CBD5E1; padding-left: 14px; position: relative; margin-bottom: 6px; font-weight: 600; }
-        .infra-spec-list li::before { content: "▪"; position: absolute; left: 0; color: var(--neon-lime); }
+        .infra-spec-list li::before { content: "▪"; position: absolute; left: 0; color: var(--industrial-green); }
 
         /* Blueprint Card Matrices */
         .blueprint-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: left; }
@@ -404,14 +428,14 @@
         .blueprint-grid .blueprint-card:hover {
             transform: scale(1.02);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            border-color: var(--neon-lime);
+            border-color: var(--industrial-green);
         }
-        .blueprint-card-header { background-color: var(--graphite); color: var(--pure-white); padding: 8px 12px; font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .blueprint-card-header { background-color: var(--graphite); color: var(--pure-white); padding: 8px 12px; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
         .blueprint-card-body { padding: 20px; flex-grow: 1; text-align: left; position: relative; }
-        .blueprint-card-num { font-size: 2.2rem; font-weight: 800; color: var(--neon-lime) !important; line-height: 1; margin-bottom: 5px; text-align: left; font-family: 'Space Mono', monospace; transition: color 0.3s ease; }
+        .blueprint-card-num { font-size: 2.2rem; font-weight: 800; color: var(--industrial-green) !important; line-height: 1; margin-bottom: 5px; text-align: left; font-family: 'Space Mono', monospace; transition: color 0.3s ease; }
         .blueprint-card-body h3 { font-size: 0.95rem; margin-bottom: 12px; line-height: 1.3; text-align: left; color: #FFFFFF; }
         .blueprint-card-body p { font-size: 0.82rem; color: #94A3B8; line-height: 1.5; text-align: left; }
-        .blueprint-letter-overlay { position: absolute; top: 15px; right: 20px; font-family: 'Sora', sans-serif; font-weight: 800; color: rgba(76, 195, 138, 0.07); pointer-events: none; line-height: 1; }
+        .blueprint-letter-overlay { position: absolute; top: 15px; right: 20px; font-family: 'Montserrat', sans-serif; font-weight: 800; color: rgba(76, 195, 138, 0.07); pointer-events: none; line-height: 1; }
         .blueprint-letter-overlay.size-regular { font-size: 3.5rem; }
         .blueprint-letter-overlay.size-xlarge { font-size: 5rem; }
 
@@ -434,11 +458,11 @@
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .brick-modular-container:hover {
-            border-color: var(--neon-lime);
-            box-shadow: inset 0 0 0 1px var(--neon-lime);
+            border-color: var(--industrial-green);
+            box-shadow: inset 0 0 0 1px var(--industrial-green);
         }
         .brick-modular-container h3 { font-size: 1.05rem; margin-bottom: 12px; border-bottom: 2px solid var(--graphite); padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .big-phase-cap { font-size: 2.8rem; font-weight: 800; color: var(--neon-lime); font-family: 'Sora', sans-serif; line-height: 1; display: inline-block; vertical-align: bottom; }
+        .big-phase-cap { font-size: 2.8rem; font-weight: 800; color: var(--industrial-green); font-family: 'Montserrat', sans-serif; line-height: 1; display: inline-block; vertical-align: bottom; }
 
         /* --- SERVICES TAB SCHEMATICS --- */
         .services-statement-box h1 { font-size: 1.9rem; margin-bottom: 15px; }
@@ -467,7 +491,7 @@
         }
         
         .stage-title-strip { font-family: 'Space Mono', monospace; font-size: 1.15rem; font-weight: 700; margin-bottom: 0; text-transform: uppercase; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
-        .stage-title-strip span { color: var(--neon-lime); text-transform: uppercase; }
+        .stage-title-strip span { color: var(--industrial-green); text-transform: uppercase; }
         .vertical-row-inner h4 { font-size: 0.95rem; color: #FFFFFF; margin-bottom: 6px; margin-top: 25px; }
         .vertical-row-inner h4:first-child { margin-top: 0; }
         .vertical-row-inner p { font-size: 0.88rem; color: #94A3B8; margin-bottom: 20px; }
@@ -476,42 +500,41 @@
         .vertical-row-inner li:last-child { margin-bottom: 0; }
 
         /* Structural Tabular Logic Matrix */
-        .matrix-static-wrapper { background-color: var(--pure-white); border: 1px solid var(--border-gray); width: 100%; padding: 25px; position: relative; }
-        .matrix-static-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: var(--midnight); border-bottom: 2px solid var(--border-gray); padding-bottom: 10px; }
+        .matrix-static-wrapper { background-color: var(--pure-white); border: 1px solid var(--border-oxidized); width: 100%; padding: 25px; position: relative; margin-bottom: 30px; }
+        .matrix-static-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; color: var(--midnight); border-bottom: 2px solid var(--border-oxidized); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
         table.matrix-data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; text-align: left; color: var(--text-dark); }
-        table.matrix-data-table th { background-color: var(--midnight); color: #FFFFFF; padding: 12px; font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; border: 1px solid var(--border-gray); }
-        table.matrix-data-table td { padding: 12px; border: 1px solid var(--border-gray); vertical-align: top; transition: background-color 0.2s ease; }
+        table.matrix-data-table th { background-color: var(--midnight); color: #FFFFFF; padding: 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; border: 1px solid var(--border-oxidized); }
+        table.matrix-data-table td { padding: 12px; border: 1px solid var(--border-oxidized); vertical-align: top; transition: background-color 0.2s ease; }
         table.matrix-data-table tr:hover td { background-color: rgba(124, 58, 237, 0.03); }
-        table.matrix-data-table tr:nth-child(even) td { background-color: var(--soft-stone); }
+        table.matrix-data-table tr:nth-child(even) td { background-color: #F1F3F5; }
 
         /* --- CONTACT TAB SCHEMATICS --- */
         .intake-header-box { background-color: var(--midnight); color: #FFFFFF; text-align: center; }
-        .intake-header-box h1 { font-size: 2.2rem; margin-bottom: 8px; letter-spacing: -1px; }
         .intake-header-box p { font-weight: 500; font-size: 0.95rem; max-width: 700px; margin: 0 auto 0 auto; color: #94A3B8; }
         
         .status-marker-capsule-teal { display: block; font-family: 'Space Mono', monospace; background-color: var(--graphite); color: var(--pure-white); padding: 8px 16px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; margin-bottom: 10px; width: 100%; }
-        .status-marker-capsule-teal span.blink-light { width: 10px; height: 10px; background-color: var(--neon-lime); display: inline-block; margin-right: 8px; animation: system-blink 1.2s infinite ease-in-out; box-shadow: 0 0 8px var(--neon-lime); }
-        .origin-story-container { border: 1px solid var(--border-gray); position: relative; }
-        .origin-story-container h3 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid var(--border-gray); padding-bottom: 6px; }
+        .status-marker-capsule-teal span.blink-light { width: 10px; height: 10px; background-color: var(--industrial-green); display: inline-block; margin-right: 8px; animation: system-blink 1.2s infinite ease-in-out; box-shadow: 0 0 8px var(--industrial-green); }
+        .origin-story-container { border: 1px solid var(--border-oxidized); position: relative; }
+        .origin-story-container h3 { font-size: 1.1rem; margin-bottom: 15px; border-bottom: 2px solid var(--border-oxidized); padding-bottom: 6px; }
         
         .contact-split-container { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 20px; align-items: stretch; margin-bottom: 25px; }
         .right-column-stack { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
         .contact-callout-card { background-color: var(--midnight); color: var(--pure-white); padding: 30px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: center; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
         .contact-callout-card h4 { color: #FFFFFF; font-size: 1.1rem; margin-bottom: 15px; }
         .contact-callout-card .cta-links { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; width: 100%; }
-        .contact-callout-card .cta-link-btn { background: transparent; border: 1px solid var(--neon-lime); color: var(--neon-lime); padding: 12px; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; }
-        .contact-callout-card .cta-link-btn:hover { background: var(--neon-lime); color: var(--midnight); transform: scale(1.03); }
+        .contact-callout-card .cta-link-btn { background: transparent; border: 1px solid var(--industrial-green); color: var(--industrial-green); padding: 12px; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); width: 100%; }
+        .contact-callout-card .cta-link-btn:hover { background: var(--industrial-green); color: var(--midnight); transform: scale(1.03); }
 
         .industrial-form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .form-field-group { display: flex; flex-direction: column; }
-        .form-field-group label { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; color: var(--text-dark); }
-        .form-input-element { width: 100%; padding: 12px; border: 1px solid var(--border-gray); background-color: var(--soft-stone); font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+        .form-field-group label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; color: var(--text-dark); }
+        .form-input-element { width: 100%; padding: 12px; border: 1px solid var(--border-oxidized); background-color: #F1F3F5; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--text-dark); transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
         .form-input-element:focus { outline: none; border-color: var(--muted-purple); background-color: var(--pure-white); box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1); }
         .form-radio-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
         .radio-item-label { display: flex; align-items: center; font-size: 0.9rem; cursor: pointer; font-weight: 500; }
         .radio-item-label input { margin-right: 10px; width: 16px; height: 16px; accent-color: var(--muted-purple); }
-        .submit-large-cta { font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; background-color: var(--neon-lime); color: var(--midnight); border: none; padding: 18px 30px; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.5px; width: 100%; text-align: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .submit-large-cta:hover { background-color: #BEFF44; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(163, 255, 18, 0.3); }
+        .submit-large-cta { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; background-color: var(--industrial-green); color: var(--midnight); border: none; padding: 18px 30px; font-size: 0.95rem; cursor: pointer; letter-spacing: 0.5px; width: 100%; text-align: center; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .submit-large-cta:hover { background-color: #74dfab; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(76, 195, 138, 0.3); }
 
         /* --- DIAGNOSTIC INDEX ENGINE VISUALS --- */
         .diagnostic-container { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 24px; }
@@ -520,15 +543,15 @@
         .diag-header { background: var(--midnight); color: white; padding: 30px 20px; display: flex; justify-content: center; align-items: center; border-bottom: 4px solid var(--muted-purple); position: relative; }
         .diag-header h1 { color: #FFFFFF; font-size: 1.8rem; font-weight: 800; letter-spacing: 0.5px; text-align: center; width: 100%; }
 
-        .diag-intro-card { background: white; padding: 24px; border: 1px solid var(--border-gray); margin-bottom: 5px; }
-        .diag-card { background: white; padding: 24px; border: 1px solid var(--border-gray); height: fit-content; }
-        .question-block { margin-bottom: 24px; padding: 20px; border: 1px solid var(--border-gray); background-color: #ffffff; transition: background-color 0.4s ease, border-color 0.4s ease; }
+        .diag-intro-card { background: white; padding: 24px; border: 1px solid var(--border-oxidized); margin-bottom: 5px; }
+        .diag-card { background: white; padding: 24px; border: 1px solid var(--border-oxidized); height: fit-content; }
+        .question-block { margin-bottom: 24px; padding: 20px; border: 1px solid var(--border-oxidized); background-color: #ffffff; transition: background-color 0.4s ease, border-color 0.4s ease; }
         .question-block.missing-field { background-color: var(--error-bg); border-color: var(--error-border); box-shadow: 0 0 0 1px var(--error-border); }
-        .question-title { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; text-transform: none; color: var(--midnight); }
+        .question-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; text-transform: none; color: var(--midnight); }
         .question-desc { font-size: 0.9rem; color: #475569; margin-bottom: 14px; font-style: italic; }
         .slider-container { display: flex; align-items: center; width: 100%; }
         input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; background: transparent; outline: none; height: 32px; margin: 0; cursor: pointer; }
-        input[type="range"]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: var(--track-unselected); transition: background-color 0.3s ease; }
+        input[type="range"]::-webkit-slider-run runnable-track { width: 100%; height: 8px; background: var(--track-unselected); transition: background-color 0.3s ease; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; background: var(--thumb-unselected); height: 20px; width: 20px; border: 2px solid white; margin-top: -6px; transition: background-color 0.3s ease, scale 0.2s ease; }
         input[type="range"]:active::-webkit-slider-thumb { scale: 1.2; }
         input[type="range"].active-engaged::-webkit-slider-runnable-track { background: #C7D2FE; }
@@ -539,9 +562,9 @@
         
         .step-progress-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: var(--soft-stone); padding: 12px 20px; font-family: 'Space Mono', monospace; font-weight: 700; }
         .diag-action-container { display: flex; gap: 15px; margin-top: 25px; }
-        .diag-btn { font-family: 'Sora', sans-serif; font-weight: 700; text-transform: uppercase; padding: 14px 28px; font-size: 0.85rem; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .diag-submit-btn { background-color: var(--neon-lime); color: var(--midnight); }
-        .diag-submit-btn:hover { background-color: #BEFF44; transform: translateY(-1px); }
+        .diag-btn { font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; padding: 14px 28px; font-size: 0.85rem; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .diag-submit-btn { background-color: var(--industrial-green); color: var(--midnight); }
+        .diag-submit-btn:hover { background-color: #74dfab; transform: translateY(-1px); }
         .diag-nav-btn { background-color: var(--graphite); color: white; }
         .diag-nav-btn:hover:not(:disabled) { background-color: var(--midnight); transform: translateY(-1px); }
         .diag-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -550,15 +573,15 @@
         .diag-sticky-panel { display: none; height: fit-content; }
         .diag-score-display { text-align: center; background-color: var(--midnight); padding: 20px; border: 1px solid var(--graphite); }
         .diag-score-display h3 { color: #FFFFFF; }
-        .diag-global-score { font-size: 4rem; font-weight: 900; color: var(--neon-lime); margin: 10px 0; font-family: 'Space Mono', monospace; }
-        .diag-tier-badge { display: inline-block; padding: 6px 16px; font-family: 'Sora', sans-serif; font-weight: 700; color: white; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .diag-global-score { font-size: 4rem; font-weight: 900; color: var(--industrial-green); margin: 10px 0; font-family: 'Space Mono', monospace; }
+        .diag-tier-badge { display: inline-block; padding: 6px 16px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: white; font-size: 0.8rem; letter-spacing: 0.5px; }
         .pillar-bar-container { margin-top: 15px; }
         .pillar-label { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.85rem; margin-bottom: 4px; }
         .bar-bg { background-color: var(--track-unselected); height: 10px; width: 100%; }
         .bar-fill { background-color: var(--muted-purple); height: 100%; width: 0%; transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         
         .diag-blueprint-box { background-color: var(--soft-stone); border-left: 4px solid var(--muted-purple); padding: 20px; margin-top: 20px; font-size: 0.9rem; color: var(--text-dark); }
-        .diag-audit-header { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 0.95rem; margin-top: 20px; text-transform: uppercase; border-bottom: 1px solid var(--border-gray); padding-bottom: 4px; }
+        .diag-audit-header { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.95rem; margin-top: 20px; text-transform: uppercase; border-bottom: 1px solid var(--border-oxidized); padding-bottom: 4px; }
         .diag-gap-list { list-style: none; padding-left: 0; margin-top: 10px; }
         .diag-gap-item { font-size: 0.85rem; margin-bottom: 10px; padding-left: 14px; position: relative; color: #334155; }
         .diag-gap-item::before { content: "▪"; position: absolute; left: 0; color: var(--muted-purple); }
@@ -569,6 +592,9 @@
         .footer-inner .corp-statement { font-weight: 700; color: #FFFFFF; text-transform: uppercase; font-family: 'Space Mono', monospace; letter-spacing: 1px; }
 
         @media (max-width: 992px) {
+            .hero-layout { flex-direction: column; text-align: center; }
+            .hero-left .hero-subtext { border-left: none; padding-left: 0; }
+            .hero-actions { justify-content: center; }
             .split-system-layout { flex-direction: column; }
             .split-system-left, .split-system-right { flex: initial; width: 100%; }
             .services-phase-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -589,12 +615,12 @@
             <nav>
                 <ul class="nav-tabs">
                     <li><button id="tab-home" class="tab-trigger active-tab" onclick="switchSystemTab(event, 'home-view')">Home</button></li>
-                    <li><button id="tab-about" class="tab-trigger" onclick="switchSystemTab(event, 'about-view')">About</button></li>
                     <li><button id="tab-services" class="tab-trigger" onclick="switchSystemTab(event, 'services-view')">Capabilities</button></li>
+                    <li><button id="tab-about" class="tab-trigger" onclick="switchSystemTab(event, 'about-view')">About & Founder</button></li>
                     <li><button id="tab-contact" class="tab-trigger" onclick="switchSystemTab(event, 'contact-view')">Contact Us</button></li>
                 </ul>
             </nav>
-            <button class="header-cta" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">Launch P.R.O.™ Index™</button>
+            <button class="header-cta" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">LAUNCH P.R.O.™ INDEX™</button>
         </div>
     </header>
 
@@ -606,18 +632,27 @@
                 <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
                 <div class="contained-1200 hero-layout">
                     <div class="hero-left">
-                        <h1>Driving Operational Efficiency and Commercial Growth for B2B and Field Services.</h1>
+                        <h1>We Build Repeatable Revenue Systems for Industrial and Field Service Companies.</h1>
                         <div class="hero-subtext">
-                            We resolve the invisible operational bottlenecks that cap your field capacity while deploying targeted sales and digital frameworks to scale your revenue, accelerate mobilization speeds, and protect hard-earned profit margins.
+                            Stop relying entirely on legacy trade shows and word-of-mouth networks. We build the automated data pipelines, targeted account tracking, and front-office infrastructure needed to keep your plant services, operations, and field crews fully mobilized while protecting your corporate margins and driving predictable EBITDA growth.
                         </div>
                         <div class="hero-actions">
-                            <button class="btn-amber" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">Launch P.R.O.™ Index™</button>
-                            <button class="btn-purple" onclick="switchSystemTab(null, 'services-view')">Review Our Infrastructure</button>
+                            <button class="btn-purple" onclick="switchSystemTab(null, 'services-view')">EXPLORE CORE CAPABILITIES</button>
                         </div>
                     </div>
                     <div class="hero-right">
-    <img src="FFP-hero-bg.jpg" alt="FieldForge Partners Execution" style="width: 100%; height: 100%; object-fit: cover;">
-</div>
+                        <div class="index-card-cta-container">
+                            <div class="index-card-header">FieldForge Engineering</div>
+                            <div class="index-card-title">P.R.O. Index™ Diagnostic</div>
+                            <p style="color: #FFFFFF; font-size: 0.85rem; margin-bottom: 10px;">How Strong Is Your Revenue System?</p>
+                            <ul class="index-card-bullets">
+                                <li>21 Hard Core Questions</li>
+                                <li>3 Operational Windows</li>
+                                <li>Instant System Score Output</li>
+                            </ul>
+                            <button class="btn-amber" style="width: 100%; padding: 12px; font-size: 0.85rem;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">LAUNCH P.R.O.™ INDEX™</button>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -626,20 +661,21 @@
                     <div class="split-system-left">
                         <div class="tagline-small">
                             <svg class="inline-title-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                            Commercial Engineering for Mobilized Field Services
+                            Commercial Engineering for Industrial and Field Sectors
                         </div>
-                        <h2>Industrial Marketing Isn’t Creative. It’s Structural.</h2>
-                        <p>FieldForge Partners built the P.R.O.™ framework for technical operations that dominate on-site execution but hit a growth ceiling due to fragmented tracking and leaked leads. We replace generic agency guesswork with engineered marketing infrastructure: data-harvesting, automated routing, and digital systems that turn your technical expertise into predictable revenue.</p>
-                        <p style="font-weight: 700; color: var(--text-dark); margin-top: 15px;">Built for operations that need to break total dependency on trade shows and word-of-mouth.</p>
+                        <h2>Field Service Companies Don't Need More Generic Marketing—They Need System Logic.</h2>
+                        <p>Most industrial service companies rely on trade shows, referrals, and individual personal relationships to generate pipeline revenue. That architectural approach works beautifully—until your long-term growth trajectory depends entirely on a scalable system rather than a single person.</p>
+                        <p>FieldForge Partners helps industrial and field service entities engineer repeatable, transparent commercial engines that generate predictable opportunities, support technical sales crews, and eliminate front-office operational constraints.</p>
+                        <p style="font-weight: 700; color: var(--text-dark); margin-top: 15px;">Built for operations ready to break total dependency on historical legacy networks.</p>
                     </div>
 
                     <div class="split-system-right">
                         <div class="scorecard-brick">
                             <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
                             <div class="scorecard-header">
-                                <h3>The P.R.O.™ Index™</h3>
-                                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--neon-lime); text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
-                                    <span class="pulse-dot"></span>System Status: Active
+                                <h3>The P.R.O.™ Framework Architecture</h3>
+                                <span style="font-family: 'Space Mono', monospace; font-size: 0.75rem; font-weight: 700; color: var(--industrial-green); text-transform: uppercase; display: flex; align-items: center; gap: 8px;">
+                                    <span class="pulse-dot"></span>System Operational Status
                                 </span>
                             </div>
 
@@ -648,7 +684,7 @@
                                     <span class="metric-tag">[P] MARKET PERFORMANCE</span>
                                     <span>72</span>
                                 </div>
-                                <div class="metric-sub">Auditing AEO visibility and digital footprint</div>
+                                <div class="metric-sub">Improve how your company is discovered, researched, and evaluated.</div>
                                 <div class="progress-bar-bg">
                                     <div class="progress-bar-fill" style="width: 72%;"></div>
                                 </div>
@@ -659,7 +695,7 @@
                                     <span class="metric-tag">[R] PIPELINE RAMP</span>
                                     <span>35</span>
                                 </div>
-                                <div class="metric-sub">Testing inbound/outbound lead velocity</div>
+                                <div class="metric-sub">Convert raw market attention into highly qualified field operations.</div>
                                 <div class="progress-bar-bg">
                                     <div class="progress-bar-fill" style="width: 35%;"></div>
                                 </div>
@@ -670,18 +706,64 @@
                                     <span class="metric-tag">[O] WORKFLOW OUTPUT</span>
                                     <span>48</span>
                                 </div>
-                                <div class="metric-sub">Isolating CRM data and front-office constraints</div>
+                                <div class="metric-sub">Reduce front-office administration drag through deep CRM optimization.</div>
                                 <div class="progress-bar-bg">
                                     <div class="progress-bar-fill" style="width: 48%;"></div>
                                 </div>
                             </div>
 
-                            <p style="font-size: 0.85rem; color: #CBD5E1; margin-top:15px;"><strong>P.R.O.™ System Constraints:</strong> A lagging index score indicates structural gaps across your Performance, Ramp, or Output layers. These constraints actively drain your field capacity by allowing operational lag and pipeline stalls to dictate where you deploy your mobilized crews.</p>
-
-                            <button class="btn-amber" style="width: 100%; margin-top: 15px; font-size: 0.85rem; padding: 14px;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">
-                                Launch Pro Index™
+                            <button class="btn-purple" style="width: 100%; margin-top: 15px; font-size: 0.85rem; padding: 14px;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">
+                                LAUNCH P.R.O.™ INDEX™
                             </button>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-white">
+                <div class="contained-1000">
+                    <div class="matrix-static-wrapper">
+                        <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
+                        <div class="matrix-static-title">
+                            Is Your Growth Problem Really A Marketing Problem?
+                        </div>
+                        <table class="matrix-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Observed Front-Office Symptom</th>
+                                    <th>Engineered Systemic Root Cause</th>
+                                    <th>P.R.O.™ Structural Mapping</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>"We simply aren't seeing enough new inbound leads."</strong></td>
+                                    <td>Weak digital footprint, hidden service catalog architecture, and poor visibility.</td>
+                                    <td><span style="color:var(--muted-purple); font-weight:700;">Market Performance Layer</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>"Our proposal closing rate and contract conversions are tanking."</strong></td>
+                                    <td>Lack of structured prospecting systems, non-aligned messaging, and missing sales data.</td>
+                                    <td><span style="color:var(--muted-purple); font-weight:700;">Pipeline Ramp Activation</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>"Our CRM tracking is chaotic and teams skip record logging."</strong></td>
+                                    <td>High administrative drag, missing tracking rules, and manual distribution errors.</td>
+                                    <td><span style="color:var(--industrial-green); font-weight:700;">Workflow Output Automation</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>"Sales volume is volatile and completely owner-dependent."</strong></td>
+                                    <td>Total reliance on a personal rolodex network instead of data-driven inbound engines.</td>
+                                    <td><span style="color:var(--muted-purple); font-weight:700;">Pipeline Ramp Activation</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>"Management has zero real-time visibility into active pipeline metrics."</strong></td>
+                                    <td>Missing bidirectional marketing attribution data matrices and core ledger loops.</td>
+                                    <td><span style="color:var(--industrial-green); font-weight:700;">Workflow Output Automation</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="btn-amber" style="width:100%; padding:14px;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">LAUNCH P.R.O.™ INDEX™</button>
                     </div>
                 </div>
             </section>
@@ -689,16 +771,16 @@
             <section class="section-wrapper bg-graphite">
                 <div class="contained-1200">
                     <div class="section-header-block">
-                        <h2>The Four-Stage Blueprint</h2>
+                        <h2>The Sequential Revenue Architecture Blueprint</h2>
                     </div>
 
                     <div class="blueprint-grid">
                         <div class="blueprint-card">
-                            <div class="blueprint-card-header">Phase 01: Intake</div>
+                            <div class="blueprint-card-header">Phase 01: Context Intake</div>
                             <div class="blueprint-card-body">
                                 <div class="blueprint-card-num">01</div>
                                 <h3>Critical Constraint Diagnosis</h3>
-                                <p>We bypass generic corporate audits. Instead, we launch the voice-activated P.R.O.™ Index™ to instantly pinpoint the exact pipeline stalls, conversion leaks, and market visibility blind spots holding back your operations.</p>
+                                <p>We bypass generic corporate discovery calls. We run a rigorous operational stress-test across your business data to map exact pipeline stalls, tracking leaks, and technical capacity blind spots holding back your scale.</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
@@ -706,8 +788,8 @@
                             <div class="blueprint-card-body">
                                 <div class="blueprint-card-num">02</div>
                                 <div class="blueprint-letter-overlay size-regular">P</div>
-                                <h3>Market Performance Engineering [P]</h3>
-                                <p>We transform your website and sales assets into high-authority commercial tools. By re-engineering your application messaging and digital architecture, we ensure your capabilities pass strict procurement vetting and rank cleanly across AI search environments.</p>
+                                <h3>Market Performance Engineering™</h3>
+                                <p>Improve how your company is discovered, researched, and evaluated by prospective asset buyers. We align website technical architecture, non-branded organic visibility, and next-generation Answer Engine Optimization (AEO).</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
@@ -715,17 +797,67 @@
                             <div class="blueprint-card-body">
                                 <div class="blueprint-card-num">03</div>
                                 <div class="blueprint-letter-overlay size-regular">R</div>
-                                <h3>Pipeline Ramp Activation [R]</h3>
-                                <p>We deploy precise data harvesting and targeted account-based campaigns to stabilize your monthly opportunity flow. This builds a repeatable inbound system that breaks your total dependency on legacy trade shows and word-of-mouth networks.</p>
+                                <h3>Pipeline Ramp Activation™</h3>
+                                <p>Convert market attention into highly qualified enterprise contract opportunities through structured data harvesting, account-based targeting, and disciplined field sales enablement playbooks.</p>
                             </div>
                         </div>
                         <div class="blueprint-card">
-                            <div class="blueprint-card-header">Phase 04: Scale</div>
+                            <div class="blueprint-card-header">Phase 04: Scale Infrastructure</div>
                             <div class="blueprint-card-body">
                                 <div class="blueprint-card-num">04</div>
                                 <div class="blueprint-letter-overlay size-xlarge">O</div>
-                                <h3>Automated Workflow Output [O]</h3>
-                                <p>We inject practical automation and CRM logic directly into your front office to eliminate administrative drag. We turn your CRM into a trusted source of truth, deploy intelligent lead routing, and build clear attribution loops to maximize execution speed.</p>
+                                <h3>Workflow Output Automation™</h3>
+                                <p>Reduce front-office administrative drag and manual handoff errors through robust enterprise CRM configuration, smart routing logic, and real-time leadership analytics matrices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-wrapper bg-stone">
+                <div class="contained-1200">
+                    <div class="section-header-block">
+                        <h2>Operational Performance Framework: What We Help Clients Measure</h2>
+                    </div>
+                    <div class="blueprint-grid">
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Market Performance Core</div>
+                            <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
+                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Digital Shell Integrity</h3>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Non-Branded Organic Visibility</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Answer Engine Sourcing Index</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Target Procurement Vetting Rate</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Asset-Class Message Penetration</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Pipeline Velocity Core</div>
+                            <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
+                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Ramp Mechanics</h3>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Total Qualified Opportunities</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Stage-Gate Pitch Velocity</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Formal Proposal Conversion %</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Tier-1 Enterprise Sourcing Flow</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header" style="background:var(--midnight);">Automation Integrity Core</div>
+                            <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
+                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Workflow Output</h3>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Systemic CRM Adoption Rates</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Estimator Response Window (SLA)</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Administrative Labor Leakage</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Full-Funnel Financial Attribution</p>
+                            </div>
+                        </div>
+                        <div class="blueprint-card">
+                            <div class="blueprint-card-header" style="background:var(--midnight);">EBITDA Impact Metrics</div>
+                            <div class="blueprint-card-body" style="background:var(--graphite); color:#FFFFFF;">
+                                <h3 style="color:var(--industrial-green); font-size:0.9rem; margin-bottom:10px;">Asset Optimization</h3>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Crew Utilization Capacity</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Customer Acquisition Cost (CAC)</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem; margin-bottom:6px;">▪ Specialized Account Margin Rate</p>
+                                <p style="color:#CBD5E1; font-size:0.85rem;">▪ Multi-Year Contract Backlog Size</p>
                             </div>
                         </div>
                     </div>
@@ -740,6 +872,30 @@
                 <h1>Built From Field Execution. Scaled Through System Logic.</h1>
             </section>
 
+            <section class="section-wrapper bg-white">
+                <div class="contained-1100 profile-layout">
+                    <div class="profile-left-col">
+                        <div class="founder-photo-placeholder">
+                            <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div><div class="tc-bl tech-crosshair"></div><div class="tc-br tech-crosshair"></div>
+                            <span>[ Field Equipment Photo Blueprint Placeholder:<br>Founder Wes Cowley ]</span>
+                        </div>
+                    </div>
+                    <div class="profile-right-col">
+                        <h2>Built by Someone Who Has Lived the Problem</h2>
+                        <div class="profile-tag-sub">Wes Cowley | Managing Director</div>
+                        
+                        <p>Most industrial service companies don't fail because they lack technical expertise. They fail because that technical expertise never becomes an institutional, repeatable commercial system.</p>
+                        <p>After 15 years operating with a mechanical engineering foundation, heavy commercial operations, specialized industrial sales, and global field service deployments, Wes founded FieldForge to help industrial operators scale systematically. He translates complex sales and structural constraints into execution-ready revenue infrastructure.</p>
+                        
+                        <ul style="list-style-type:square; padding-left:20px; margin-bottom:20px; color:#475569;">
+                            <li style="margin-bottom:8px; font-size:0.95rem;"><strong>Industrial B2B-Proven Leadership:</strong> Managed large-scale cladding projects and multi-disciplinary teams of mobile technicians executing high-stakes work across power plants and paper mills. Ascended to corporate Vice President and Senior Vice President positions.</li>
+                            <li style="margin-bottom:0px; font-size:0.95rem;"><strong>Private Equity Optimization:</strong> Guided middle-market portfolio assets through rapid scaling parameters, margin capture initiatives, and disciplined corporate exits across multiple cycles (including IGP, JFL, and American Securities).</li>
+                        </ul>
+                        <p>This deep field operational exposure forms the diagnostic logic built natively inside our proprietary P.R.O.™ Index™ diagnostic framework.</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="section-wrapper bg-graphite">
                 <div class="contained-1100">
                     <h2 style="font-size: 1.4rem; margin-bottom: 25px; text-transform: uppercase; border-bottom: 2px solid var(--midnight); padding-bottom: 10px;">
@@ -748,62 +904,37 @@
                     
                     <div class="bricks-grid-2x2">
                         <div class="brick-modular-container">
-                            <span class="protocol-label">[CORE PROTOCOL 01]</span>
+                            <span class="protocol-label">[OPERATING PRINCIPLE 01]</span>
                             <h3>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
                                 Deliberative & Analytical Strategy
                             </h3>
-                            <p>We systematically dig into immediate business constraints to uncover hidden visibility bottlenecks, pipeline risks, and front-office headaches before prescribing a solution. We replace generic consulting guesswork with precision constraint identification.</p>
+                            <p>We systematically dig into immediate business friction to uncover hidden visibility bottlenecks, pipeline risks, and front-office headaches before prescribing a solution. We replace generic consulting guesswork with precision constraint identification.</p>
                         </div>
                         <div class="brick-modular-container">
-                            <span class="protocol-label">[CORE PROTOCOL 02]</span>
+                            <span class="protocol-label">[OPERATING PRINCIPLE 02]</span>
                             <h3>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                                 Practical System Management
                             </h3>
                             <p>Change fails when it ignores human and field realities. We systematically analyze all factors affecting a workflow, leveraging deep, trusted industry relationships to guide teams smoothly through automated system deployment, CRM optimization, and non-disruptive software transitions.</p>
                         </div>
                         <div class="brick-modular-container">
-                            <span class="protocol-label">[CORE PROTOCOL 03]</span>
+                            <span class="protocol-label">[OPERATING PRINCIPLE 03]</span>
                             <h3>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                                 The Achiever Focus
                             </h3>
                             <p>We operate with a relentless work ethic, completely rejecting academic business theories, noisy growth hacks, or corporate fluff. We evaluate performance based strictly on proven engineering methods and predictable, measurable pipeline momentum.</p>
                         </div>
                         <div class="brick-modular-container">
-                            <span class="protocol-label">[CORE PROTOCOL 04]</span>
+                            <span class="protocol-label">[OPERATING PRINCIPLE 04]</span>
                             <h3>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
                                 Arranger Alignment
                             </h3>
-                            <p>We coordinate and align people, automated software platforms, and hyper-precise data resources into the most productive configuration possible. This architecture synchronizes your inbound and outbound operations to maximize commercial execution and scale revenue.</p>
+                            <p>We coordinate and align people, automated software platforms, and hyper-precise data resources into the most productive configuration possible. This architecture synchronizes inbound and outbound operations to maximize commercial execution and scale revenue.</p>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section-wrapper bg-white">
-                <div class="contained-1100 profile-layout">
-                    <div class="profile-left-col">
-                        <div class="founder-photo-placeholder">
-                            <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div><div class="tc-bl tech-crosshair"></div><div class="tc-br tech-crosshair"></div>
-                            <span>[ On-Site Field Photo Blueprint Placeholder:<br>Founder Wesley Cowley ]</span>
-                        </div>
-                    </div>
-                    <div class="profile-right-col">
-                        <h2>Field Roots, Executive Execution</h2>
-                        <div class="profile-tag-sub">Wesley Cowley | Managing Director</div>
-                        
-                        <h3 style="font-size:1rem; margin-bottom:10px;">About the Founder</h3>
-                        <p>FieldForge Partners was founded by Wesley Cowley, a Mechanical Engineer with 15 years of hands-on experience across B2B field services, power generation, and complex surface engineering.</p>
-                        
-                        <ul style="list-style-type:square; padding-left:20px; margin-bottom:20px; color:#475569;">
-                            <li style="margin-bottom:8px; font-size:0.95rem;"><strong>Industrial B2B-Proven Leadership:</strong> Wes built his career managing large-scale infrastructure projects and technical teams for some of the largest industrial field service companies in the category, eventually rising to Senior Vice President roles.</li>
-                            <li style="margin-bottom:0px; font-size:0.95rem;"><strong>Private Equity Expertise:</strong> Having guided leadership teams through aggressive growth and complex transitions under some of America's most prominent private equity firms, he understands the exact pressures business owners face.</li>
-                        </ul>
-
-                        <p>Today, Wes acts as a seasoned advisor who translates complex sales, marketing, and operational constraints into clear, execution-ready blueprints. This deep, real-world exposure forms the technical foundation for our proprietary P.R.O.™ Index™ diagnostic framework.</p>
                     </div>
                 </div>
             </section>
@@ -816,8 +947,9 @@
                 <div class="contained-1100 services-statement-box">
                     <h1>End-to-End Operational & Commercial Engineering</h1>
                     <div class="anti-fluff-alert-container">
-                        <h4>Our Value Proposition:</h4>
-                        <p>We build permanent, data-driven revenue engines specifically for the <strong>mobilized B2B industrial field service sector</strong>. No over-hyped marketing hacks or generic corporate fluff—just clear, proven ROI.</p>
+                        <h4>[ SYSTEM ENGINE BASELINE ]</h4>
+                        <p><strong>We Don't Sell Creative Marketing. We Engineer Revenue Architecture.</strong></p>
+                        <p>We completely reject academic business theories, superficial growth hacks, and corporate agency fluff. We evaluate our performance strictly on proven engineering methods, data integrity, and measurable pipeline momentum that protects your margins.</p>
                     </div>
                 </div>
             </section>
@@ -828,17 +960,17 @@
                     <div class="contained-1100 services-phase-grid">
                         <div class="services-phase-left">
                             <div class="stage-title-strip">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                                <div>Phase 01 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px;">The System Stress-Test</span></div>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                <div>Phase 01 // <span style="display:block; font-size:1.25rem; font-family:'Montserrat'; font-weight:800; margin-top:5px;">The System Stress-Test</span></div>
                             </div>
                             <button class="btn-amber" style="margin-top: 20px; font-size: 0.85rem; padding: 12px 24px; display: inline-block;" onclick="initializeDiagnosticSession(); switchSystemTab(null, 'diagnostic-view');">
-                                Launch P.R.O.™ Index™
+                                LAUNCH P.R.O.™ INDEX™
                             </button>
                         </div>
                         <div class="services-phase-right">
                             <div class="vertical-row-inner">
                                 <span class="protocol-label">[ENG-PROTOCOL 01.A] Critical Constraint Diagnosis</span>
-                                <p>We bypass generic corporate audits. Instead, we launch a proprietary P.R.O.™ Index™ diagnostic to immediately expose pipeline stalls, hidden visibility gaps, and tracking leaks.</p>
+                                <p>We bypass generic corporate discovery calls. We launch the voice-activated P.R.O. Index to instantly pinpoint the exact pipeline stalls, conversion leaks, and market visibility blind spots holding back your operations.</p>
                                 <ul>
                                     <li>Identifies immediate operational wins before direct consultation.</li>
                                     <li>Customizes deployment parameters to your exact workforce realities.</li>
@@ -853,29 +985,26 @@
                         <div class="services-phase-grid">
                             <div class="services-phase-left">
                                 <div class="stage-title-strip">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                                    <div>[<span class="big-phase-cap">P</span>] Phase 02 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Performance Engineering</span></div>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                                    <div>[<span class="big-phase-cap">P</span>] Phase 02 // <span style="display:block; font-size:1.25rem; font-family:'Montserrat'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Performance Engineering™</span></div>
                                 </div>
                             </div>
                             <div class="services-phase-right">
                                 <div class="infra-grid-content">
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 02.A]</span>
-                                        <h4>Modernized Web Footprints & Messaging</h4>
-                                        <p>Turning your digital footprint into an active sales filter. High-performance, SEO-optimized layout designs focused on clear technical execution by identifying buyers, equipment applications, and engineering needs.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Problem-specific messaging mapped by equipment variant</li>
-                                            <li>High-margin technical capability emphasis</li>
-                                        </ul>
+                                        <h4>Website Technical Refresh & Application Messaging</h4>
+                                        <p>Turning web footprints into an authoritative, 24/7 sales qualifier and high-converting B2B tool. We replace generic corporate summaries with clear, problem-specific messaging mapped by equipment application, plant problems, and buyer needs.</p>
                                     </div>
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 02.B]</span>
-                                        <h4>Industrial SEO & Answer Engine Optimization</h4>
-                                        <p>Structuring your technical content so your specialized services are reliably cited and recommended by traditional search engines and next-generation AI discovery platforms like ChatGPT, Gemini, and Perplexity.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Enterprise Service Schema markup injection</li>
-                                            <li>Non-branded search discoverability for asset problems</li>
-                                        </ul>
+                                        <h4>AI Search Salience & Advanced Semantic SEO</h4>
+                                        <p>Structuring technical content and injecting Enterprise Service Schema markup directly into the digital architecture. This ensures specialized services are reliably recognized, cited, and recommended first across next-generation AI discovery environments (ChatGPT, Gemini, Perplexity) as well as traditional search engines.</p>
+                                    </div>
+                                    <div class="infra-sub-block" style="grid-column: span 2;">
+                                        <span class="protocol-label">[ENG-PROTOCOL 02.C]</span>
+                                        <h4>Automated Trust & Authority Content Suites</h4>
+                                        <p>Engineering dedicated expert bio pages highlighting critical certifications (PE, NACE, AWS) to streamline early-stage procurement vetting. Production of 2-minute "SME Technical Video Nuggets" and monthly deep-dive webinars (e.g., Surviving a Technical Plant Audit) to act as high-priority lead filters and justify premium corporate pricing.</p>
                                     </div>
                                 </div>
                             </div>
@@ -888,29 +1017,26 @@
                         <div class="services-phase-grid">
                             <div class="services-phase-left">
                                 <div class="stage-title-strip">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><path d="M16 18l6-6-6-6"/><polyline points="2 22 8 12 2 2"/></svg>
-                                    <div>[<span class="big-phase-cap">R</span>] Phase 03 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Ramp Activation</span></div>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><path d="M16 18l6-6-6-6"/><polyline points="2 22 8 12 2 2"/></svg>
+                                    <div>[<span class="big-phase-cap">R</span>] Phase 03 // <span style="display:block; font-size:1.25rem; font-family:'Montserrat'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Pipeline Ramp Activation™</span></div>
                                 </div>
                             </div>
                             <div class="services-phase-right">
                                 <div class="infra-grid-content">
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 03.A]</span>
-                                        <h4>Intent Demand Capture & Nurture</h4>
-                                        <p>Stabilizing your qualified opportunities. We showcase your equipment expertise directly to plant managers and engineers through targeted account campaigns, breaking your dependency on legacy networks.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Automated trust content & SME video assets</li>
-                                            <li>Predictable account-based nurture channels</li>
-                                        </ul>
+                                        <h4>Targeted Contact Scraping & "Sniper" Mail-Merge</h4>
+                                        <p>Utilizing advanced data-harvesting tools to compile immaculate contact directories of asset owners, plant managers, utility supervisors, and compliance directors. Deploying automated, 1-to-1 "Sniper" email cadences structured as highly personal technical notes addressing specific plant pains, completely bypassing generic spam folders.</p>
                                     </div>
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 03.B]</span>
-                                        <h4>Sales & Partner Channel Alignment</h4>
-                                        <p>Eliminating the visibility dark zones that occur after an inquiry is handed off to sales reps or estimators. We replace guesswork with transparent collateral needed to convert contracts.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Unified Golden Thread capability statements</li>
-                                            <li>Standardized RFP responses designed for procurement</li>
-                                        </ul>
+                                        <h4>Account-Based Marketing (ABM) & Paid Media</h4>
+                                        <p>Executing hyper-targeted LinkedIn case study advertisements and high-intent Google Search campaigns aimed directly at a hard list of "Must-Win" enterprise accounts to warm up stakeholders before sales reps initiate contact.</p>
+                                    </div>
+                                    <div class="infra-sub-block" style="grid-column: span 2;">
+                                        <span class="protocol-label">[ENG-PROTOCOL 03.C]</span>
+                                        <h4>New Vertical Integration Roadmaps</h4>
+                                        <p>Executing structured market expansion strategies into highly regulated sectors (e.g., penetrating the Power, Utilities, or Heavy Infrastructure markets) without diluting core brand authority, positioning mobilized crews as specialized protectors of critical assets.</p>
                                     </div>
                                 </div>
                             </div>
@@ -923,29 +1049,26 @@
                         <div class="services-phase-grid">
                             <div class="services-phase-left">
                                 <div class="stage-title-strip">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--neon-lime);"><rect x="2" y="3" width="20" height="14" fill="none"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-                                    <div>[<span class="big-phase-cap">O</span>] Phase 04 // <span style="display:block; font-size:1.25rem; font-family:'Sora'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Output Automation</span></div>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--industrial-green);"><rect x="2" y="3" width="20" height="14" fill="none"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                                    <div>[<span class="big-phase-cap">O</span>] Phase 04 // <span style="display:block; font-size:1.25rem; font-family:'Montserrat'; font-weight:800; margin-top:5px; border-bottom:2px solid var(--muted-purple); padding-bottom:2px; width:fit-content;">Automated Workflow Output™</span></div>
                                 </div>
                             </div>
                             <div class="services-phase-right">
                                 <div class="infra-grid-content">
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 04.A]</span>
-                                        <h4>Conversion Infrastructure & Lead Routing</h4>
-                                        <p>Upgrading your environment to convert intent into secure data inputs inside enterprise CRMs. When high-value leads hit your stack, systems eliminate manual routing delays and frontend constraints.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Secure API lead and RFQ tracking links</li>
-                                            <li>Lag-free distribution routing directly to human account managers</li>
-                                        </ul>
+                                        <h4>Growth Intelligence & CRM Integrity</h4>
+                                        <p>Deploying secure, bi-directional marketing automation layers (such as HubSpot) directly on top of legacy enterprise CRMs (Salesforce or industry-specific tracking databases). Only verified, "Sales-Ready" opportunities are pushed to teams, turning the CRM into a trusted, definitive source of truth.</p>
                                     </div>
                                     <div class="infra-sub-block">
                                         <span class="protocol-label">[ENG-PROTOCOL 04.B]</span>
-                                        <h4>Growth Intelligence & CRM Integrity</h4>
-                                        <p>Turning your CRM into a trusted source of truth to manage the pipeline cleanly. We establish clear attribution loops so leadership can track active opportunities back to their exact campaign origin.</p>
-                                        <ul class="infra-spec-list">
-                                            <li>Bidirectional marketing-to-CRM automation parameters</li>
-                                            <li>Hardcoded full-funnel campaign financial attribution loops</li>
-                                        </ul>
+                                        <h4>Full-Funnel Campaign Attribution</h4>
+                                        <p>Mapping every outbound cadence, digital asset, and webinar with distinct tracking codes to connect active inquiries, opportunities, and closed-won RFPs back to their exact digital or data source, enabling data-driven capital allocation decisions.</p>
+                                    </div>
+                                    <div class="infra-sub-block" style="grid-column: span 2;">
+                                        <span class="protocol-label">[ENG-PROTOCOL 04.C]</span>
+                                        <h4>Intelligent Lead Routing & Automated Systems</h4>
+                                        <p>Building secure, non-disruptive automation tools and intelligent communication routing software. When a high-intent inquiry or RFQ hits the ecosystem, the system bypasses manual lag, logs parameters, and cleanly routes the opportunity to designated human account managers to minimize administrative drag and overhead costs.</p>
                                     </div>
                                 </div>
                             </div>
@@ -966,35 +1089,35 @@
                             <thead>
                                 <tr>
                                     <th>Infrastructure Layer</th>
-                                    <th>Verified Tooling</th>
+                                    <th>Verified Tooling Stack</th>
                                     <th>Engineered Operational Outcome</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Automation & Nurture</strong></td>
-                                    <td>HubSpot, ActiveCampaign, Zoho & more</td>
-                                    <td>Automated lead tracking and high-volume nurture.</td>
+                                    <td><strong>Marketing Automation & Nurture</strong></td>
+                                    <td>HubSpot Professional, Active Campaign</td>
+                                    <td>Automated lead tracking, behavioral scoring, and high-volume nurture layers.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Pipeline Fuel</strong></td>
-                                    <td>Apollo.io, <a href="http://hunter.io" target="_blank" style="color:var(--muted-purple); font-weight:700;">hunter.io</a> & More</td>
-                                    <td>Precision contact lists for industrial decision-makers.</td>
+                                    <td><strong>Data Scraping & Pipeline Fuel</strong></td>
+                                    <td>Apollo.io, Hunter.io, Custom Scraping Logic</td>
+                                    <td>Hyper-precise contact list building targeting enterprise industrial decision-makers.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>CRM Integration</strong></td>
-                                    <td>Salesforce, HubSpot, Pardot, SAP & more</td>
-                                    <td>Bi-directional sync mapping web visits to revenue.</td>
+                                    <td><strong>CRM Integration Layer</strong></td>
+                                    <td>Salesforce, HubSpot CRM, Industry-Specific Suites</td>
+                                    <td>Bi-directional synchronization mapping anonymous web visits to closed-won RFPs cleanly.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Process Logic</strong></td>
-                                    <td>n8n.io, Make.com, Secure APIs & more</td>
-                                    <td>Multi-variable automation for hands-off lead routing.</td>
+                                    <td><strong>Process Logic & Workflows</strong></td>
+                                    <td>n8n.io, Make.com, Secure API webhooks</td>
+                                    <td>Multi-variable automation handling lead routing without human administrative drag.</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Digital Footprint</strong></td>
-                                    <td>Webflow, WordPress, HTML & more</td>
-                                    <td>Fast, stable sites optimized for AI search crawling.</td>
+                                    <td><strong>Digital Infrastructure</strong></td>
+                                    <td>Webflow, WordPress, Custom Secure HTML frameworks</td>
+                                    <td>Fast, stable web footprints optimized for advanced AI/AEO crawling and lead capture.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1014,11 +1137,11 @@
             <section class="section-wrapper bg-stone">
                 <div class="contained-1100 contact-split-container">
                     
-                    <div class="origin-story-container" style="padding: 40px; background-color: var(--pure-white); border-color: var(--border-gray);">
+                    <div class="origin-story-container" style="padding: 40px; background-color: var(--pure-white); border-color: var(--border-oxidized);">
                         <div class="tc-tl tech-crosshair"></div><div class="tc-tr tech-crosshair"></div>
-                        <h2 style="font-size:1.2rem; margin-bottom:15px; border-bottom:2px solid var(--border-gray); padding-bottom:5px; color:var(--midnight);">Why Professor?</h2>
-                        <p>Let’s be clear: "The Professor" wasn't earned in some stuffy academic lecture hall or a corporate marketing suite. It goes back to a project around 2015. On that job, the customer, a third-party consultant, and a close friend and colleague of mine started trading lighthearted nicknames to keep things lively on-site. Because of my knack for answering highly specific technical questions using real-world subject matter expertise right there on the spot, they dubbed me "The Professor."</p>
-                        <p>The name stuck with a few folks ever since, and it perfectly sets the tone for how we work today: bringing sharp, deep technical logic to your business operations without taking ourselves too seriously.</p>
+                        <h2 style="font-size:1.2rem; margin-bottom:15px; border-bottom:2px solid var(--border-oxidized); padding-bottom:5px; color:var(--midnight);">Why Professor?</h2>
+                        <p>Let’s be clear: "The Professor" wasn't earned in some stuffy academic lecture hall or a corporate marketing suite. It goes back to a field project around 2015. On that job, the customer, a third-party consultant, and a close colleague started trading lighthearted nicknames to keep things lively on-site. Because of my knack for answering highly specific technical questions using real-world subject matter expertise right there on the spot, they dubbed me "The Professor."</p>
+                        <p>The name stuck representing the sharp, deep technical logic brought to business operations without taking ourselves too seriously.</p>
                     </div>
 
                     <div class="right-column-stack">
@@ -1041,10 +1164,10 @@
             </section>
 
             <section class="section-wrapper bg-white" style="padding-top:0;">
-                <div class="contained-800" style="background-color: var(--pure-white); border: 1px solid var(--border-gray); padding: 40px; position: relative;">
+                <div class="contained-800" style="background-color: var(--pure-white); border: 1px solid var(--border-oxidized); padding: 40px; position: relative;">
                     <div class="tc-bl tech-crosshair"></div><div class="tc-br tech-crosshair"></div>
                     
-                    <h3 style="font-size:1.1rem; margin-bottom:25px; text-transform:uppercase; color:var(--midnight); border-bottom: 2px solid var(--border-gray); padding-bottom: 10px;">Let's get in touch.</h3>
+                    <h3 style="font-size:1.1rem; margin-bottom:25px; text-transform:uppercase; color:var(--midnight); border-bottom: 2px solid var(--border-oxidized); padding-bottom: 10px;">Let's get in touch.</h3>
                     
                     <form class="industrial-form-grid" onsubmit="event.preventDefault(); alert('Parameters logged cleanly inside structural baseline tracking ledger.');">
                         
@@ -1111,7 +1234,7 @@
                 <h1>PERFORMANCE RAMP OUTPUT</h1>
             </div>
 
-            <div class="section-wrapper">
+            <section class="section-wrapper">
                 <div class="diagnostic-container" id="diag-main-layout">
                     
                     <div id="diag-left-column">
@@ -1140,7 +1263,7 @@
                             <div class="diag-action-container">
                                 <button class="diag-btn diag-nav-btn" id="diag-prev-btn" onclick="navigateStep(-1)" disabled>Previous Phase</button>
                                 <button class="diag-btn diag-nav-btn" id="diag-next-btn" onclick="navigateStep(1)">Next Phase</button>
-                                <button class="diag-btn diag-submit-btn" id="diag-calc-btn" onclick="validateAndCalculateDiag()" style="display: none;">Run the Master Operational Audit</button>
+                                <button class="btn-amber diag-submit-btn" id="diag-calc-btn" onclick="validateAndCalculateDiag()" style="display: none;">Run the Master Operational Audit</button>
                                 <button class="diag-btn" id="diag-reset-btn" onclick="resetDiagnosticEngine()" style="display: none; background:#64748b; color:white;">Restart Audit</button>
                             </div>
                         </div>
@@ -1181,7 +1304,7 @@
                     </div>
 
                 </div>
-            </div>
+            </section>
 
         </div>
 
@@ -1233,7 +1356,7 @@
             { id: 10, name: "Q10: Outbound Database Decay and Precision", desc: "How precise and scrubbed are your outbound prospecting databases when targeting asset managers?", p: 0.10, r: 0.60, o: 0.30, levels: ["Non-existent; sales teams work from outdated personal rolodexes.", "Basic directories exist, but data records lack direct extensions.", "Lists are clean, but lack deep segmentation by Deep Constraint Diagnosis parameters.", "Access to clean, updated contact directories targeting actual buyers.", "Advanced data-harvesting tools compile immaculate targeted profiles."] },
             { id: 11, name: "Q11: Account-Based Marketing (ABM) Execution", desc: "How intentionally do you run multi-channel campaigns to warm up enterprise accounts before calls?", p: 0.30, r: 0.60, o: 0.10, levels: ["Zero strategic targeting; reps resort to cold calling/drop-ins.", "Occasional emails sent, but lacks programmatic coordination.", "Runs baseline digital ads targeting broad industries instead of targets.", "Targeted case study campaigns reach key plant stakeholders.", "Integrated ABM systems deploy laser-targeted wins prior to outreach."] },
             { id: 12, name: "Q12: Pipeline Dark Zones and Accountability", desc: "How clearly can management track opportunity progression once an inbound lead is handed over?", p: 0.10, r: 0.50, o: 0.40, levels: ["Complete dark zone; tracking stops until contract signed/lost.", "Rely on informal team check-ins or manual spreadsheets.", "Pipeline stages visible for direct sales, third-party unmonitored.", "Standardized documentation tracks handoff dates and current status.", "Complete full-funnel visibility tracks progression velocity automatically."] },
-            { id: 13, name: "Q13: Sniper Outreach Personalization", desc: "How targeted, personalized, and relevant are your automated outbound sales communications?", p: 0.20, r: 0.70, o: 0.10, levels: ["Communications non-existent or read as automated spam.", "Reps send one-off emails, but messaging is generic feature-dump.", "Consistent email outreach maintained, but lacks plant pain profiles.", "Outbound messages target specific functions with case studies.", "Automated 1-to-1 cadences mimic direct personal notes from leaders."] },
+            { id: 13, name: "Q13: Sniper Outreach Personalization", desc: "How targeted, personalized, and relevant are your automated outbound sales communications?", p: 0.20, r: 0.70, o: 0.10, levels: ["Warm-up notes non-existent or read as automated spam.", "Reps send one-off emails, but messaging is generic feature-dump.", "Consistent email outreach maintained, but lacks plant pain profiles.", "Outbound messages target specific functions with case studies.", "Automated 1-to-1 cadences mimic direct personal notes from leaders."] },
             { id: 14, name: "Q14: Sales Response Velocity (SLA)", desc: "What is the exact time-to-contact gap between an asset owner request and an estimator engagement?", p: 0.10, r: 0.50, o: 0.40, levels: ["Inquiries routinely sit for days; missing strict project windows.", "Inbound leads assigned in 24hrs, but outreach depends on memory.", "Fast response for existing premium, new requests face uneven times.", "Clear internal rules require follow-up within a few business hours.", "Automated tracking triggers instant system logging and rapid routing."] },
             { id: 15, name: "Q15: Marketing Attribution Loops", desc: "How reliably can leadership trace closed-won RFPs back to their exact digital or data source?", p: 0.30, r: 0.20, o: 0.50, levels: ["Zero attribution; commercial spending treated as sunk cost.", "Sourcing relies entirely on guessing or asking 'How did you hear?'", "Can trace direct website forms, cannot tie offline or email databases.", "Tracks and maps the true source of origin for majority of proposals.", "Hard-coded campaign attribution loops connect cadences to won RFPs."] },
             { id: 16, name: "Q16: Commercial Stage-Gate and Bottleneck Mapping", desc: "How precisely can management isolate specific steps where high-stakes deals slow down?", p: 0.10, r: 0.40, o: 0.50, levels: ["Completely blind; management notices blocks after account loss.", "Rely on subjective rep opinions or reactive retroactive debriefs.", "High-level stage delays visible, root causes cannot be isolated.", "Regular visibility tracks deal delays across territories and reps.", "Advanced analytical reporting isolates stalls by stage, estimator, etc."] },
